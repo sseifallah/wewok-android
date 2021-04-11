@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "645479220399",
+    "project_id": "wewok-6c117",
+    "storage_bucket": "wewok-6c117.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645479220399:android:a411b23037977163f1c05a",
+        "android_client_info": {
+          "package_name": "com.delivery.wewok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645479220399-otiim252ebc7puc1pk2dunpkbtmf0jdr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsmgBVrVER81R1-GcaODYnGukRLLJRWlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645479220399-otiim252ebc7puc1pk2dunpkbtmf0jdr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

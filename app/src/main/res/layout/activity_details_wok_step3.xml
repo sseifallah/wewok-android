@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.details_wok.step2.DetailsWokActivityStep2"
+    android:background="@color/white">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline22H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline055H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.055" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline95V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline05V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline89H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        app:cardCornerRadius="8dp"
+        app:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H"/>
+
+    <com.rishabhharit.roundedimageview.RoundedImageView
+        android:id="@+id/roundedImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_guest_wok"
+        app:cornerRadius="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rounded_bottom_corners"
+        app:layout_constraintBottom_toTopOf="@id/guideline22H"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_cart"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintBottom_toTopOf="@+id/guideline055H"
+        app:layout_constraintEnd_toStartOf="@id/guideline95V"
+        app:layout_constraintTop_toTopOf="@+id/guideline055H"
+        app:layout_constraintWidth_percent="0.05" />
+
+    <TextView
+        android:id="@+id/txt_wok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="center_vertical"
+        android:text="@string/Nos_desserts"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline055H"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline055H" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/ic_back_white"
+        app:layout_constraintBottom_toTopOf="@+id/guideline055H"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline055H" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="4,95 €"
+        android:textColor="@color/orange"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Votre base wok au choix + légumes frais + oeuf"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_price"
+        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_title"
+        android:elevation="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp"
+        android:textColor="@color/bold_grey"
+        android:fontFamily="@font/nunito_semibold"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mon Wok"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_description"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_price"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H"
+        android:elevation="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_nos_desserts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline89H"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/indicateur" />
+    <LinearLayout
+        android:id="@+id/menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline89H"
+        android:orientation="horizontal"
+        >
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_not_need"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:padding="1dp"
+            android:background="@drawable/bg_wihte_rounded_corners_stock_orange"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/Je_n_en_veux_plus"
+            android:textAllCaps="false"
+            android:textColor="@color/orange"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_orange_rounded_corners"
+            android:layout_weight="1"
+            android:padding="1dp"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/white"
+            android:text="@string/Ajouter"
+            android:textAllCaps="false"
+            android:layout_margin="10dp"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_ma_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/Nos_desserts"
+        android:textColor="@color/orange"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline29H" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_ma_base"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_ma_base"
+        app:srcCompat="@drawable/ic_nos_desserts" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_etape_1_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Etape_3_3"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toBottomOf="@+id/img_ma_base" />
+    <LinearLayout
+        android:id="@+id/indicateur"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_etape_1_3">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="@color/orange" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:background="@color/orange" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/orange" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

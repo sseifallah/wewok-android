@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.AuthActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topCardGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topLogoGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomLogoGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline88H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline90V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="34dp"
+        app:layout_constraintStart_toStartOf="@id/guideline10V"
+        app:layout_constraintEnd_toEndOf="@id/guideline90V"
+        app:layout_constraintTop_toBottomOf="@id/topCardGuideline"
+        app:layout_constraintBottom_toTopOf="@id/guideline88H">
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="7dp"
+        app:srcCompat="@drawable/logo"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/topLogoGuideline"
+        app:layout_constraintBottom_toTopOf="@id/bottomLogoGuideline"
+        app:layout_constraintStart_toEndOf="@id/guideline30V"
+        app:layout_constraintEnd_toStartOf="@id/guideline70V"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintStart_toEndOf="@id/guideline10V"
+        app:layout_constraintEnd_toStartOf="@id/guideline90V"
+        app:layout_constraintTop_toBottomOf="@id/bottomLogoGuideline"
+        app:layout_constraintBottom_toTopOf="@id/guideline88H"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/auth_bottom"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toBottomOf="@id/guideline70H"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btn_back_login"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="40dp"
+        android:padding="7dp"
+        android:src="@drawable/ic_back_auth"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/guideline10V"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="pressBtnBackLogin"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

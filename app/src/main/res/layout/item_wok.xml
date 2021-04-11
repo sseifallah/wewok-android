@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline95V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="3dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline05V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="3dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline29H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="100dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        app:cardCornerRadius="8dp"
+        app:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H"/>
+
+    <com.rishabhharit.roundedimageview.RoundedImageView
+        android:id="@+id/roundedImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="2dp"
+        android:src="@drawable/ic_guest_wok"
+        app:cornerRadius="13dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@+id/guideline05V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:elevation="3dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="4,95 €"
+        android:textColor="@color/orange"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/guideline95V"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Votre base wok au choix + légumes frais + oeuf"
+        app:layout_constraintBottom_toTopOf="@+id/guideline29H"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_price"
+        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_title"
+        android:elevation="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp"
+        android:textColor="@color/bold_grey"
+        android:fontFamily="@font/nunito_semibold"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mon Wok"
+        app:layout_constraintBottom_toTopOf="@+id/lbl_description"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_price"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/roundedImageView"
+        app:layout_constraintTop_toTopOf="@+id/guideline15H"
+        android:elevation="2dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

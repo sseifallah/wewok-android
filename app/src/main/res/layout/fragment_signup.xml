@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingTop="7dp"
+android:paddingStart="21dp"
+android:paddingEnd="21dp"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+tools:context=".ui.auth.fragments.SignupFragment">
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline08H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.07"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline18H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.16"/>
+
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline31H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.31"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline43H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.43"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline55H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.55"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline63H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.63"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline73H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.72"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline93H"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.92"/>
+
+<TextView
+    android:id="@+id/txt_identifier"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:text="@string/s_inscrire"
+    android:textSize="20sp"
+    android:gravity="center_horizontal|center_vertical"
+    android:textColor="@color/black"
+    android:fontFamily="@font/nunito_bold"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/guideline08H"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+<!--<TextView
+    android:id="@+id/txt_information"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/txt_signup"
+    android:textAlignment="center"
+    android:textSize="14sp"
+    android:textColor="@color/black"
+    android:fontFamily="@font/nunito_regular"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/guideline08H"
+    app:layout_constraintBottom_toTopOf="@id/guideline18H"
+    android:gravity="center_horizontal" />-->
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_prenom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawablePadding="10dp"
+        android:padding="5dp"
+        android:hint="Prénom"
+        android:layout_gravity="center"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/black"
+        android:theme="@style/TextLabel"
+        android:inputType="text"
+        android:maxLines="1"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/guideline08H"
+        app:layout_constraintHeight_percent="0.11" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_nom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawablePadding="10dp"
+        android:hint="Nom"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/black"
+        android:theme="@style/TextLabel"
+        android:inputType="text"
+        android:maxLines="1"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/edit_prenom"
+        app:layout_constraintHeight_percent="0.11"
+        />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_email_register"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawablePadding="10dp"
+        android:padding="5dp"
+        android:textCursorDrawable="@null"
+        android:hint="Email"
+        android:maxLines="1"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:theme="@style/TextLabel"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/edit_nom"
+        app:layout_constraintHeight_percent="0.11"
+        />
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawablePadding="10dp"
+        android:padding="5dp"
+        android:hint="Téléphone"
+        android:maxLines="1"
+        android:layout_gravity="center"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/black"
+        android:theme="@style/TextLabel"
+        android:inputType="phone"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/edit_email_register"
+        app:layout_constraintHeight_percent="0.11"
+        />
+<androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/edit_password_register"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:drawablePadding="10dp"
+    android:padding="5dp"
+    android:hint="Mot de passe"
+    android:layout_gravity="center"
+    android:textColor="@color/black"
+    android:maxLines="1"
+    android:textCursorDrawable="@null"
+    android:theme="@style/TextLabel"
+    android:inputType="textPassword"
+    android:backgroundTint="@color/grey"
+    app:layout_constraintTop_toBottomOf="@id/edit_phone"
+    app:layout_constraintHeight_percent="0.11"
+    />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edit_adresse"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:drawablePadding="10dp"
+        android:hint="Adresse"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:textCursorDrawable="@null"
+        android:textColor="@color/black"
+        android:theme="@style/TextLabel"
+        android:inputType="text"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintTop_toBottomOf="@id/edit_password_register"
+        app:layout_constraintHeight_percent="0.11"
+        />
+
+<Button
+    android:id="@+id/btn_signup"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@drawable/button_login"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:text="@string/s_inscrire"
+    android:textAllCaps="false"
+    android:padding="1dp"
+    android:textSize="14sp"
+    android:fontFamily="@font/nunito_semibold"
+    app:layout_constraintTop_toBottomOf="@+id/edit_adresse"
+    app:layout_constraintHeight_percent="0.1"/>
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toBottomOf="@id/btn_signup"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/nunito_regular"
+        android:gravity="end"
+        android:text="@string/txt_compte_signup"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="normal" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_s_identifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/s_identifier"
+        android:textColor="@color/orange"
+        android:textSize="12sp"
+        android:paddingLeft="0dp" />
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <ProgressBar
+        android:id="@+id/pg_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/orange"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

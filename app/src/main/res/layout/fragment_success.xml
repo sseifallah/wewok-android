@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.details_wok.SuccessActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline20H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.29"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline42H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline55H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline30V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline70V"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_success_top"
+        android:adjustViewBounds="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline20H"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/txt_success"
+        android:textSize="23sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="#32DD6D"
+        android:gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline20H"
+        app:layout_constraintHeight_percent="0.12"/>
+
+    <TextView
+        android:id="@+id/txt_cmd"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/txt_num_cmd"
+        android:textSize="18sp"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/black"
+        android:gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline42H"
+        app:layout_constraintHeight_percent="0.09"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/logo_success"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:elevation="7dp"
+        app:srcCompat="@drawable/logo"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/guideline55H"
+        app:layout_constraintStart_toEndOf="@id/guideline30V"
+        app:layout_constraintEnd_toStartOf="@id/guideline70V"
+        app:layout_constraintHeight_percent="0.1"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/txt_cmd_dispo"
+        android:textSize="18sp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/black"
+        android:gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_success"
+        app:layout_constraintHeight_percent="0.09"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Retour"
+        android:textSize="18sp"
+        android:elevation="1dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="@color/white"
+        android:gravity="center_vertical|center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottom_retour"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_retour"/>
+    <View
+        android:id="@+id/bottom_retour"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/shape_rounded_top_corners"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.1"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

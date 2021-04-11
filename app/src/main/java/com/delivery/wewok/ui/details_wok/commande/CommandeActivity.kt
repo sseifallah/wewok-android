@@ -109,8 +109,9 @@ class CommandeActivity : AppCompatActivity() {
 
         total = 0.0
         for (item in adapter.getItems()){
-            var pr = item.price.toDouble()
-            var prix = String.format("%.2f", pr )
+            var priceWithoutComma = item.price.replace(",",".")
+            var pr = priceWithoutComma.toDouble()
+            var prix = String.format("%.2f", pr)
             total += prix.toDouble()
         }
         var price = String.format("%.2f", total)

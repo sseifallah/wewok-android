@@ -19,7 +19,6 @@ import com.delivery.wewok.utils.MODE_WOK
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_commande.*
-import kotlinx.android.synthetic.main.activity_commande.btn_next
 
 @AndroidEntryPoint
 class CommandeActivity : AppCompatActivity() {
@@ -27,10 +26,12 @@ class CommandeActivity : AppCompatActivity() {
     companion object{
         var  menuIds = ArrayList<String>()
         var total = 0.0
+        var allCommandes = ArrayList<CommandeModel>()
+        var commandes = ArrayList<CommandeModel>()
     }
     lateinit var adapter : CommandeAdapter
-    var commandes = ArrayList<CommandeModel>()
-    var allCommandes = ArrayList<CommandeModel>()
+
+
     private val viewModel: CommandesViewModel by viewModels()
     var userId = 0
     var mode=""
@@ -45,6 +46,7 @@ class CommandeActivity : AppCompatActivity() {
         allCommandes.addAll(DetailsWokActivityStep2.commandes)
         allCommandes.addAll(DetailsWokActivityStep3.commandes)
         if (! allCommandes.isNullOrEmpty()) {
+
             var wok = CommandeModel("", "", DetailsWokActivityStep1.basePrice, "ic_guest_wok", 1)
             for (com in allCommandes) {
                 if (com.wok == true) {
@@ -58,14 +60,16 @@ class CommandeActivity : AppCompatActivity() {
             wok.price = pr
             commandes.add(0, wok)
             adapter.setData(commandes)
-            btn_next.setBackgroundResource(R.drawable.shape_top_corners_button)
-            btn_next.isClickable = true
+            btn_next_cmd.setBackgroundResource(R.drawable.shape_top_corners_button)
+            btn_next_cmd.isClickable = true
+            btn_next_cmd.isEnabled = true
             updateValues("")
         }
         else
         {
-            btn_next.setBackgroundResource(R.drawable.shape_top_corners_button_grey)
-            btn_next.isClickable = false
+            btn_next_cmd.setBackgroundResource(R.drawable.shape_top_corners_button_grey)
+            btn_next_cmd.isClickable = false
+            btn_next_cmd.isEnabled = false
         }
         setupNavigation()
     }
@@ -85,7 +89,7 @@ class CommandeActivity : AppCompatActivity() {
             onBackPressed()
         }
 */
-        btn_next.setOnClickListener {
+        btn_next_cmd.setOnClickListener {
             menuIds = ArrayList<String>()
             for (item in allCommandes)
                 menuIds.add(item.id)
@@ -99,7 +103,6 @@ class CommandeActivity : AppCompatActivity() {
         }
 
     }
-
 
 
     fun updateValues(id : String){
@@ -135,6 +138,9 @@ class CommandeActivity : AppCompatActivity() {
         }
     }
 
+    fun clearCommandes(){
+        commandes.clear()
+    }
 
     override fun onBackPressed() {
         super.onBackPressed()

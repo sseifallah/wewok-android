@@ -33,7 +33,6 @@ import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_commande.*
 import kotlinx.android.synthetic.main.activity_details_wok_step1.*
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.activity_payment.btn_next_payment
 import kotlinx.android.synthetic.main.activity_payment.payment_fragment_container
 import kotlinx.android.synthetic.main.activity_payment.pg_payment
 import kotlinx.android.synthetic.main.activity_payment.radio_carte
@@ -69,6 +68,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
             getWindow().getDecorView().setImportantForAutofill(
                 View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         }
+        btn_next_payment_liv.isClickable = false
+        btn_next_payment_liv.isEnabled = false
         menuIds.clear()
         menuIds.addAll(CommandeActivity.menuIds)
         total = CommandeActivity.total
@@ -88,7 +89,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
             activeNext()
         }
 
-        btn_next_payment.setOnClickListener {
+        btn_next_payment_liv.setOnClickListener {
             if (radio_carte.isChecked){
                 if (zone_updated) {
                     if (zoneChecked) {
@@ -188,7 +189,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                             it.data?.order_id.let {
                                 orderId =it!!
                                 Paper.book().write(ORDER_ID,it)
-                                viewModel.updateStatus(it,"approved")
+
                                 val intent = Intent(this@PaymentLivraisonActivity, SuccessActivity::class.java)
                                 startActivity(intent)
                             }
@@ -298,8 +299,9 @@ class PaymentLivraisonActivity : AppCompatActivity() {
 
     fun activeNext()
     {
-            btn_next_payment.setBackgroundResource(R.drawable.shape_top_corners_button)
-            btn_next_payment.isClickable = true
+        btn_next_payment_liv.setBackgroundResource(R.drawable.shape_top_corners_button)
+        btn_next_payment_liv.isClickable = true
+        btn_next_payment_liv.isEnabled = true
     }
 
     fun toWebView(url  :String?,success_url  :String?,error_url  :String?,){

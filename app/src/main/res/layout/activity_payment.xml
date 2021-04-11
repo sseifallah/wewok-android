@@ -117,12 +117,13 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next_payment"
+        android:id="@+id/btn_next_payment_emporter"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         android:background="@drawable/shape_top_corners_button_grey"
         app:layout_constraintTop_toTopOf="@+id/guideline89H"
         android:text="@string/continuer"
@@ -150,7 +151,6 @@
         android:elevation="6dp"
         android:id="@+id/payment_fragment_container"
         android:visibility="invisible"
-        android:clickable="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

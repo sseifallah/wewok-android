@@ -56,6 +56,8 @@ class PaymentEmporterActivity : AppCompatActivity() {
             getWindow().getDecorView().setImportantForAutofill(
                 View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
         }
+        btn_next_payment_emporter.isClickable = false
+        btn_next_payment_emporter.isEnabled = false
         menuIds.clear()
         menuIds.addAll(CommandeActivity.menuIds)
         total = CommandeActivity.total
@@ -75,7 +77,7 @@ class PaymentEmporterActivity : AppCompatActivity() {
             activeNext()
         }
 
-        btn_next_payment.setOnClickListener {
+        btn_next_payment_emporter.setOnClickListener {
             if (radio_carte.isChecked){
                 if (zone_updated) {
 
@@ -141,7 +143,7 @@ class PaymentEmporterActivity : AppCompatActivity() {
                             it.data?.order_id.let {
                                 orderId =it!!
                                 Paper.book().write(ORDER_ID,it)
-                                viewModel.updateStatus(it,"approved")
+
                                 val intent = Intent(this@PaymentEmporterActivity, SuccessActivity::class.java)
                                 startActivity(intent)
                             }
@@ -251,8 +253,9 @@ class PaymentEmporterActivity : AppCompatActivity() {
 
     fun activeNext()
     {
-            btn_next_payment.setBackgroundResource(R.drawable.shape_top_corners_button)
-            btn_next_payment.isClickable = true
+        btn_next_payment_emporter.setBackgroundResource(R.drawable.shape_top_corners_button)
+        btn_next_payment_emporter.isClickable = true
+        btn_next_payment_emporter.isEnabled = true
     }
 
     fun toWebView(url  :String?,success_url  :String?,error_url  :String?,){

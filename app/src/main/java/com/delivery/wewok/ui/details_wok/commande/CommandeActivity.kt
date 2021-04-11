@@ -37,6 +37,10 @@ class CommandeActivity : AppCompatActivity() {
     var mode=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        menuIds = ArrayList<String>()
+        total = 0.0
+        allCommandes = ArrayList<CommandeModel>()
+        commandes = ArrayList<CommandeModel>()
         setContentView(R.layout.activity_commande)
         mode = Paper.book().read(MODE_WOK)
      //   userId = Paper.book().read<Int>(USER_ID)

@@ -49,7 +49,7 @@ class ConnectViewModel @Inject constructor(
             Log.i("CONNECT_RESULT","$connectResponse")
             connectLiveData.postValue(connectResponse)
             if (connectResponse?.status?.equals(Status.SUCCESS)!!){
-                if(userInfosResponse?.data?.status == true) {
+                if(connectResponse?.data?.status.equals("ok") ){
                     connectResponse?.data?.user?.id.let {
                         Paper.book().write<Int>(IID,it)
                     }

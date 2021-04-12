@@ -46,14 +46,14 @@ class PaymentLivraisonActivity : AppCompatActivity() {
     }
     var frais =""
    // var orderId = 0
-    var zone_updated = false
+    var zone_ville_updated = false
     var zoneChecked = false
     lateinit var currentFragment : Fragment
     private val fragmentManager = supportFragmentManager
     private val viewModel: CommandesViewModel by viewModels()
     private val viewModelHome: HomeViewModel by viewModels()
     var client_adress = " "
-    var client_city = " "
+    var client_city = ""
     var client_country = "FR"
     var client_phone = " "
     var client_postcode  = ""
@@ -91,7 +91,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
 
         btn_next_payment_liv.setOnClickListener {
             if (radio_carte.isChecked){
-                if (zone_updated) {
+                if (zone_ville_updated) {
                     if (zoneChecked) {
                         var priceWithoutComma = frais.substring(0,frais.length-2).replace(",",".")
                         var totalCmd = total+ priceWithoutComma.toDouble()
@@ -107,7 +107,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                 }
                 else {
                     toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
-                    currentFragment = ProfilEditFragment()
+                    currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
                             .replace(R.id.payment_fragment_container, currentFragment)
                             .addToBackStack(null)
@@ -117,7 +117,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
 
             }
             else if (radio_livraison.isChecked){
-                if (zone_updated) {
+                if (zone_ville_updated) {
                     if (zoneChecked) {
                         var priceWithoutComma = frais.substring(0,frais.length-2).replace(",",".")
                         var totalCmd = total+ priceWithoutComma.toDouble()
@@ -134,7 +134,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                 }
                 else {
                     toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
-                    currentFragment = ProfilEditFragment()
+                    currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
                             .replace(R.id.payment_fragment_container, currentFragment)
                             .addToBackStack(null)
@@ -166,8 +166,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         Log.i("PAYMENT_ID"," : $id")
      //   var code =  Paper.book().read<String>(CODE_ZONE)
         Log.i("PAYMENT_CODE : "," $client_postcode")
-        zone_updated = ! client_postcode.isNullOrEmpty()
-        Log.i("PAYMENT_CODE : ",zone_updated.toString())
+        zone_ville_updated = ((! client_postcode.isNullOrEmpty() ) && (! client_city.isNullOrEmpty()) )
+        Log.i("PAYMENT_CODE : ",zone_ville_updated.toString())
         if (Paper.book().contains(ZONE_CHECKED))
             zoneChecked = Paper.book().read(ZONE_CHECKED)
 

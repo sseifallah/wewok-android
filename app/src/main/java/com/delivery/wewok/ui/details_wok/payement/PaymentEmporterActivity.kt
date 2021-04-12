@@ -34,14 +34,14 @@ class PaymentEmporterActivity : AppCompatActivity() {
         var orderId = 0
     }
    // var orderId = 0
-    var zone_updated = false
+    var zone_ville_updated = false
     var zoneChecked = false
     lateinit var currentFragment : Fragment
     private val fragmentManager = supportFragmentManager
     private val viewModel: CommandesViewModel by viewModels()
     private val viewModelHome: HomeViewModel by viewModels()
     var client_adress = " "
-    var client_city = " "
+    var client_city = ""
     var client_country = "FR"
     var client_phone = " "
     var client_postcode  = ""
@@ -79,15 +79,14 @@ class PaymentEmporterActivity : AppCompatActivity() {
 
         btn_next_payment_emporter.setOnClickListener {
             if (radio_carte.isChecked){
-                if (zone_updated) {
-
+                if (zone_ville_updated) {
                     viewModel.saveOrder(client_adress, client_adress, client_country, client_phone, client_postcode, client_adress, id, total.toString(), menuIds)
                     pg_payment.visibility = View.VISIBLE
                     viewModel.saveLiveData.observe(this, saveWebObserver)
                 }
                 else {
                     toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
-                    currentFragment = ProfilEditFragment()
+                    currentFragment = ProfilEditFragment(false)
                     fragmentManager.beginTransaction()
                             .replace(R.id.payment_fragment_container, currentFragment)
                             .addToBackStack(null)
@@ -128,8 +127,8 @@ class PaymentEmporterActivity : AppCompatActivity() {
         Log.i("PAYMENT_ID"," : $id")
      //   var code =  Paper.book().read<String>(CODE_ZONE)
         Log.i("PAYMENT_CODE : "," $client_postcode")
-        zone_updated = ! client_postcode.isNullOrEmpty()
-        Log.i("PAYMENT_CODE : ",zone_updated.toString())
+        zone_ville_updated = ((! client_postcode.isNullOrEmpty() ) && (! client_city.isNullOrEmpty()) )
+        Log.i("PAYMENT_CODE : ",zone_ville_updated.toString())
 
     }
 

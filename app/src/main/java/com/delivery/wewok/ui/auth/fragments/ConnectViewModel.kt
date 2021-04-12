@@ -137,7 +137,8 @@ class ConnectViewModel @Inject constructor(
                         Paper.book().write(USER_EMAIL,it)
                     }
                     userInfosResponse?.data?.data?.postal_code.let {
-                        Paper.book().write(CODE_ZONE,it)
+                        if (! userInfosResponse?.data?.data?.postal_code.isNullOrEmpty())
+                            Paper.book().write(CODE_ZONE,it)
                     }
 
                 }

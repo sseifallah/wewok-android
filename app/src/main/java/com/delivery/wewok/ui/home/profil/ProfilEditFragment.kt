@@ -17,6 +17,7 @@ import com.delivery.wewok.R
 import com.delivery.wewok.data.model.*
 import com.delivery.wewok.ui.auth.fragments.ConnectViewModel
 import com.delivery.wewok.ui.details_wok.payement.PaymentEmporterActivity
+import com.delivery.wewok.ui.details_wok.payement.PaymentLivraisonActivity
 import com.delivery.wewok.ui.home.home.HomeViewModel
 import com.delivery.wewok.utils.*
 import com.mobilemovement.kotlintvmaze.base.Resource
@@ -26,7 +27,7 @@ import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 @AndroidEntryPoint
-class ProfilEditFragment: Fragment() {
+class ProfilEditFragment(var liv : Boolean): Fragment() {
      var username : String? = null
      var firstName : String? = null
      var lastName : String? = null
@@ -346,7 +347,10 @@ class ProfilEditFragment: Fragment() {
     }
 
     override fun onDestroy() {
-        (activity as PaymentEmporterActivity).setFragmentVisibility()
+        if (liv)
+            (activity as PaymentLivraisonActivity).setFragmentVisibility()
+        else
+            (activity as PaymentEmporterActivity).setFragmentVisibility()
         super.onDestroy()
 
     }

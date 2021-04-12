@@ -55,12 +55,14 @@ class CommandeActivity : AppCompatActivity() {
             for (com in allCommandes) {
                 if (com.wok == true) {
                     wok.title += "\n ${com.title}"
-
-                    wok.price = (wok.price.toDouble() + com.price.toDouble()).toString()
+                    var priceWithoutComma = wok.price.replace(",",".")
+                    var compriceWithoutComma = com.price.replace(",",".")
+                    wok.price = (priceWithoutComma.toDouble() + compriceWithoutComma.toDouble()).toString()
                 } else
                     commandes.add(com)
             }
-            var pr =  String.format("%.2f", wok.price.toDouble())
+            var priceWithoutComma = wok.price.replace(",",".")
+            var pr =  String.format("%.2f", priceWithoutComma.toDouble())
             wok.price = pr
             commandes.add(0, wok)
             adapter.setData(commandes)
@@ -119,7 +121,8 @@ class CommandeActivity : AppCompatActivity() {
             var priceWithoutComma = item.price.replace(",",".")
             var pr = priceWithoutComma.toDouble()
             var prix = String.format("%.2f", pr)
-            total += prix.toDouble()
+            var prixWithoutComma = prix.replace(",",".")
+            total += prixWithoutComma.toDouble()
         }
         var price = String.format("%.2f", total)
         var tax = String.format("%.2f", total/5)

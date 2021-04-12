@@ -93,7 +93,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
             if (radio_carte.isChecked){
                 if (zone_updated) {
                     if (zoneChecked) {
-                        var totalCmd = total+ frais.substring(0,frais.length-2).toDouble()
+                        var priceWithoutComma = frais.substring(0,frais.length-2).replace(",",".")
+                        var totalCmd = total+ priceWithoutComma.toDouble()
                         viewModel.saveOrder(client_adress, client_adress, client_country, client_phone, client_postcode, client_adress,
                             id, totalCmd.toString(), menuIds)
                         //("Lyon France", "Lyon France", "FR", client_phone, "68100","Lyon",
@@ -118,7 +119,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
             else if (radio_livraison.isChecked){
                 if (zone_updated) {
                     if (zoneChecked) {
-                        var totalCmd = total+ frais.substring(0,frais.length-2).toDouble()
+                        var priceWithoutComma = frais.substring(0,frais.length-2).replace(",",".")
+                        var totalCmd = total+ priceWithoutComma.toDouble()
                         viewModel.saveOrder(client_adress, client_adress, client_country, client_phone, client_postcode,client_adress,
                                 id, totalCmd.toString(), menuIds)
                         //("Lyon France", "Lyon France", "FR", client_phone, "68100","Lyon",

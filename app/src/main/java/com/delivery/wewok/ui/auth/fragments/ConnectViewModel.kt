@@ -66,6 +66,7 @@ class ConnectViewModel @Inject constructor(
                         Paper.book().write(LAST_NAME,it)
                     }
 
+
                     Paper.book().write(CONNECTED,true)
                 }
             }

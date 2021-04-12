@@ -64,7 +64,7 @@ class SignupFragment : Fragment() {
 
     fun register(nom : String, prenom : String, email : String, tel : String, password : String, adresse : String){
         if (isConnected()) {
-            viewModel.signup(nom, prenom, email, tel, password,adresse)
+            viewModel.signup( prenom,nom, email, tel, password,adresse)
             pg_signup.visibility = View.VISIBLE
             viewModel.registerLiveData.observe(viewLifecycleOwner, registerObserver)
         }

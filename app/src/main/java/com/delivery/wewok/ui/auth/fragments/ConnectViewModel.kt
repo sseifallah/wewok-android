@@ -49,12 +49,25 @@ class ConnectViewModel @Inject constructor(
             Log.i("CONNECT_RESULT","$connectResponse")
             connectLiveData.postValue(connectResponse)
             if (connectResponse?.status?.equals(Status.SUCCESS)!!){
-                Paper.book().write<Int>(IID,connectResponse?.data?.user?.id)
-                Paper.book().write(USERNAME,connectResponse?.data?.user?.username)
-                Paper.book().write(USER_EMAIL,connectResponse?.data?.user?.email)
-                Paper.book().write(FIRST_NAME,connectResponse?.data?.user?.firstname)
-                Paper.book().write(LAST_NAME,connectResponse?.data?.user?.lastname)
-                Paper.book().write<Boolean>(CONNECTED,true)
+                if(userInfosResponse?.data?.status == true) {
+                    connectResponse?.data?.user?.id.let {
+                        Paper.book().write<Int>(IID,it)
+                    }
+                    connectResponse?.data?.user?.username.let {
+                        Paper.book().write(USERNAME,it)
+                    }
+                    connectResponse?.data?.user?.email.let {
+                        Paper.book().write(USER_EMAIL,it)
+                    }
+                    connectResponse?.data?.user?.firstname.let {
+                        Paper.book().write(FIRST_NAME,it)
+                    }
+                    connectResponse?.data?.user?.lastname.let {
+                        Paper.book().write(LAST_NAME,it)
+                    }
+
+                    Paper.book().write(CONNECTED,true)
+                }
             }
         }
     }
@@ -100,14 +113,33 @@ class ConnectViewModel @Inject constructor(
             Log.i("Infos_REQ R","$userInfosResponse")
             userInfosLiveData.postValue(userInfosResponse)
             if (userInfosResponse?.status?.equals(Status.SUCCESS)!!) {
-                Paper.book().write(FIRST_NAME, userInfosResponse?.data?.data?.first_name)
-                Paper.book().write(LAST_NAME, userInfosResponse?.data?.data?.last_name)
-                Paper.book().write(USER_ADR, userInfosResponse?.data?.data?.adresse)
-                Paper.book().write(USER_NUM, userInfosResponse?.data?.data?.client_phone)
-                Paper.book().write(USER_VILLE, userInfosResponse?.data?.data?.ville)
-                Paper.book().write(IID,userInfosResponse?.data?.data?.client_id)
-                Paper.book().write(USER_EMAIL, userInfosResponse?.data?.data?.client_email)
-                Paper.book().write(CODE_ZONE, userInfosResponse?.data?.data?.postal_code)
+                if(userInfosResponse?.data?.status == true) {
+                    userInfosResponse?.data?.data?.client_id.let {
+                        Paper.book().write<Int>(IID,it)
+                    }
+                    userInfosResponse?.data?.data?.first_name.let {
+                        Paper.book().write(FIRST_NAME,it)
+                    }
+                    userInfosResponse?.data?.data?.last_name.let {
+                        Paper.book().write(LAST_NAME,it)
+                    }
+                    userInfosResponse?.data?.data?.adresse.let {
+                        Paper.book().write(USER_ADR,it)
+                    }
+                    userInfosResponse?.data?.data?.client_phone.let {
+                        Paper.book().write(USER_NUM,it)
+                    }
+                    userInfosResponse?.data?.data?.ville.let {
+                        Paper.book().write(USER_VILLE,it)
+                    }
+                    userInfosResponse?.data?.data?.client_email.let {
+                        Paper.book().write(USER_EMAIL,it)
+                    }
+                    userInfosResponse?.data?.data?.postal_code.let {
+                        Paper.book().write(CODE_ZONE,it)
+                    }
+
+                }
 
 
             }

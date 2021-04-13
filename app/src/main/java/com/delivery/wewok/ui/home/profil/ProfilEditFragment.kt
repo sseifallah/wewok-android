@@ -68,7 +68,10 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
 
             btn_back.visibility = View.VISIBLE
             btn_back.setOnClickListener {
-                (activity as PaymentEmporterActivity).setFragmentVisibility()
+                if (liv)
+                    (activity as PaymentLivraisonActivity).setFragmentVisibility()
+                else
+                    (activity as PaymentEmporterActivity).setFragmentVisibility()
             }
             btn_logout.visibility = View.INVISIBLE
 

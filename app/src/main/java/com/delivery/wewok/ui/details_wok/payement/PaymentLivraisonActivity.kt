@@ -33,7 +33,7 @@ import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_commande.*
 import kotlinx.android.synthetic.main.activity_details_wok_step1.*
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.activity_payment.payment_fragment_container
+import kotlinx.android.synthetic.main.activity_payment_livraison.payment_livraison_fragment_container
 import kotlinx.android.synthetic.main.activity_payment.pg_payment
 import kotlinx.android.synthetic.main.activity_payment.radio_carte
 import kotlinx.android.synthetic.main.activity_payment_livraison.*
@@ -109,10 +109,10 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                     toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
                     currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
-                            .replace(R.id.payment_fragment_container, currentFragment)
+                            .replace(R.id.payment_livraison_fragment_container, currentFragment)
                             .addToBackStack(null)
                             .commit()
-                    payment_fragment_container.visibility = View.VISIBLE
+                    payment_livraison_fragment_container.visibility = View.VISIBLE
                 }
 
             }
@@ -136,10 +136,10 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                     toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
                     currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
-                            .replace(R.id.payment_fragment_container, currentFragment)
+                            .replace(R.id.payment_livraison_fragment_container, currentFragment)
                             .addToBackStack(null)
                             .commit()
-                    payment_fragment_container.visibility = View.VISIBLE
+                    payment_livraison_fragment_container.visibility = View.VISIBLE
                 }
             }
         }
@@ -246,9 +246,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
 
     fun setFragmentVisibility(){
         Log.i("PAYMENT_UPDATE"," : UPDATED")
-        payment_fragment_container.visibility = View.INVISIBLE
+        payment_livraison_fragment_container.visibility = View.INVISIBLE
         updateInformations()
-
     }
 
 
@@ -315,6 +314,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         intent.putExtra("Error_URL",error_url)
         startActivity(intent)
     }
+
 
 
 }

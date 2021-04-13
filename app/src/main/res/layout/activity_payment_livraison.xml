@@ -185,7 +185,7 @@
 
     <FrameLayout
         android:elevation="6dp"
-        android:id="@+id/payment_fragment_container"
+        android:id="@+id/payment_livraison_fragment_container"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

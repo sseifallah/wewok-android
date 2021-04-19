@@ -22,8 +22,6 @@ import kotlinx.android.synthetic.main.fragment_fromage.*
 @AndroidEntryPoint
 class FromageFragment : Fragment() {
 
-
-
     private lateinit var adapter: FromageAdapter
 
     override fun onCreateView(
@@ -53,9 +51,11 @@ class FromageFragment : Fragment() {
     {
         var fromage = adapter.selectOrUnSelect(position)
         if (fromage.selected)
-            DetailsWokActivityStep1.selectedFromage = CommandeModel(fromage.id!!,fromage.title!!,fromage.price!!,fromage.image,1,true)
+            DetailsWokActivityStep1.selectedFromage.add(CommandeModel(fromage.id!!,fromage.title!!,fromage.price!!,fromage.image,1,true))
         else
-            DetailsWokActivityStep1.selectedFromage = null
+            DetailsWokActivityStep1.selectedFromage.removeAll {
+                it.id == fromage.id
+            }
     }
     fun unselectAll(){
         adapter.unselectAll()

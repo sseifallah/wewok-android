@@ -48,9 +48,11 @@ class AutreFragment : Fragment() {
     {
         var autre  = adapter.selectOrUnSelect(position)
         if (autre.selected)
-            DetailsWokActivityStep1.selectedAutre = CommandeModel(autre.id!!,autre.title!!,autre.price!!,autre.image,1,true)
+            DetailsWokActivityStep1.selectedAutre.add(CommandeModel(autre.id!!,autre.title!!,autre.price!!,autre.image,1,true))
         else
-            DetailsWokActivityStep1.selectedAutre = null
+            DetailsWokActivityStep1.selectedAutre.removeAll {
+                it.id == autre.id
+            }
     }
     fun unselectAll(){
         adapter.unselectAll()

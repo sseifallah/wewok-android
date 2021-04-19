@@ -30,6 +30,7 @@ import com.delivery.wewok.ui.home.HomeActivity
 import com.delivery.wewok.ui.home.home.HomeViewModel
 import com.delivery.wewok.utils.CODE_ZONE
 import com.delivery.wewok.utils.MODE_WOK
+import com.delivery.wewok.utils.SAVED_ORDERS
 import dagger.hilt.android.AndroidEntryPoint
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_details_wok_step1.*
@@ -47,15 +48,19 @@ import kotlinx.android.synthetic.main.activity_payment.*
 class DetailsWokActivityStep1 : AppCompatActivity() {
 
     companion object{
+
         lateinit var layout_quantity : LinearLayout
         lateinit var img_quantity : AppCompatImageView
         lateinit var txt_granitur : TextView
         lateinit var txt_quantity : TextView
+        lateinit var btn_qnt_plus : AppCompatImageView
+        lateinit var btn_qnt_minus : AppCompatImageView
+        lateinit var adapterRecyclerViewQuantite : QuantiteAdapter
         var commandes = ArrayList<CommandeModel>()
-        var selectedProtein: CommandeModel? = null
-        var selectedFromage: CommandeModel? = null
-        var selectedFruit: CommandeModel? = null
-        var selectedAutre: CommandeModel? = null
+        var selectedProtein = ArrayList<CommandeModel>()
+        var selectedFromage = ArrayList<CommandeModel>()
+        var selectedFruit = ArrayList<CommandeModel>()
+        var selectedAutre = ArrayList<CommandeModel>()
         var basePrice : String ="0.0"
 
     }
@@ -64,6 +69,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
     private val viewModelHome: HomeViewModel by viewModels()
     lateinit var adapterRecyclerViewVotreBase : BasesAdapter
     lateinit var adapterRecyclerViewRetirerIngredient : RetierIngredientsAdapter
+
     lateinit var adapterRecyclerViewToppings : ToppingsAdapter
     lateinit var pagerAdapter : PagerAdapter
     val sauces = HomeActivity.menu.sauces.get(0).items?.get(0)?.ingredientItems
@@ -80,10 +86,12 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_wok_step1)
         layout_quantity = findViewById<LinearLayout>(R.id.ly_quantite)
-        img_quantity = findViewById<AppCompatImageView>(R.id.icon_graniture)
+        /*img_quantity = findViewById<AppCompatImageView>(R.id.icon_graniture)
         txt_granitur = findViewById<TextView>(R.id.txt_graniture)
         txt_quantity = findViewById<TextView>(R.id.txt_quantite)
-
+        btn_qnt_plus = findViewById<AppCompatImageView>(R.id.btn_plus)
+        btn_qnt_minus = findViewById<AppCompatImageView>(R.id.btn_minus)
+        //Paper.book().delete(SAVED_ORDERS)*/
         recyclerview_retier_ingredient.setFocusable(false);
         ly_ly.requestFocus()
         /*var mode =  Paper.book().read<String>(MODE_WOK)
@@ -102,7 +110,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
            basePrice = it.toString();
        }
        // txt_graniture
-        icon_graniture
+        //icon_graniture
         initUi()
         Log.i("SG_B :", sauce_group.size.toString())
         getExtras()
@@ -198,6 +206,8 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         recyclerview_retier_ingredient.init(adapterRecyclerViewRetirerIngredient,LinearLayoutManager.HORIZONTAL)
         adapterRecyclerViewToppings =  ToppingsAdapter(this,this::onClickListnerToppingstItem)
         recyclerview_toppings.init(adapterRecyclerViewToppings,LinearLayoutManager.HORIZONTAL)
+        adapterRecyclerViewQuantite = QuantiteAdapter(this, this::setQuantiteGone,this::unselectProteine)
+        qnt_recycler.init(adapterRecyclerViewQuantite,LinearLayoutManager.VERTICAL)
     }
 
     private fun initViewPager()
@@ -232,6 +242,13 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
 
     }
 
+    fun setQuantiteGone(){
+        layout_quantity.visibility = View.GONE
+    }
+
+    fun unselectProteine(id :String){
+        proteinFrag.unselectProteine(id)
+    }
 
     fun checkContinue()
     {
@@ -252,22 +269,43 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
            // lateinit var adapterRecyclerViewRetirerIngredient : RetierIngredientsAdapter
            // lateinit var adapterRecyclerViewToppings : ToppingsAdapter
       //      var wok = CommandeModel()
-
+            var wokCommande = ArrayList<CommandeModel>()
             commandes.clear()
-            commandes.add(adapterRecyclerViewVotreBase.getSelectedItems())
+
+            wokCommande.add(adapterRecyclerViewVotreBase.getSelectedItems())
             if ( ! adapterRecyclerViewRetirerIngredient.getSelectedItems().isNullOrEmpty())
-                commandes.addAll(adapterRecyclerViewRetirerIngredient.getSelectedItems())
+                wokCommande.addAll(adapterRecyclerViewRetirerIngredient.getSelectedItems())
             if ( ! adapterRecyclerViewToppings.getSelectedItems().isNullOrEmpty())
-                commandes.addAll(adapterRecyclerViewToppings.getSelectedItems())
-            if ( selectedFromage != null)
-                commandes.add(selectedFromage!!)
-            if ( selectedFruit != null)
-                commandes.add(selectedFruit!!)
-            if ( selectedProtein != null)
-                commandes.add(selectedProtein!!)
-            if ( selectedAutre != null)
-                commandes.add(selectedAutre!!)
-            commandes.add(selectedSauce)
+                wokCommande.addAll(adapterRecyclerViewToppings.getSelectedItems())
+            if ( selectedFromage.size != 0)
+                wokCommande.addAll(selectedFromage)
+            if ( selectedFruit.size != 0)
+                wokCommande.addAll(selectedFruit)
+            if ( adapterRecyclerViewQuantite.itemCount!= 0)
+                wokCommande.addAll(adapterRecyclerViewQuantite.getAllItems()!!)
+            if ( selectedAutre.size != 0)
+                wokCommande.addAll(selectedAutre)
+            wokCommande.add(selectedSauce)
+
+            var wok = CommandeModel("", "",basePrice, "ic_guest_wok", 1)
+            for (com in wokCommande) {
+                if (com.wok == true) {
+                    if (com.qunatity == 1)
+                        wok.title += "\n ${com.title}"
+                    else
+                        wok.title += "\n ${com.qunatity}x ${com.title}"
+                    var priceWithoutComma = wok.price.replace(",",".")
+                    var compriceWithoutComma = com.price.replace(",",".")
+                    wok.price = (priceWithoutComma.toDouble() + (compriceWithoutComma.toDouble() * com.qunatity) ).toString()
+                }
+                else
+                    commandes.add(com)
+            }
+            var priceWithoutComma = wok.price.replace(",",".")
+            var pr =  String.format("%.2f", priceWithoutComma.toDouble())
+            wok.price = pr
+            commandes.add(0, wok)
+           // commandes.add(selectedSauce)
             val intent = Intent(this, DetailsWokActivityStep2::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)

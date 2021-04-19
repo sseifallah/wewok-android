@@ -43,6 +43,12 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.76"/>
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline76H"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76"/>
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline05V"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,9 +146,10 @@
         app:layout_constraintStart_toStartOf="@id/guideline05V"
         app:layout_constraintEnd_toEndOf="@id/guideline95V"
         app:layout_constraintTop_toBottomOf="@id/guideline25H"
-        app:layout_constraintBottom_toTopOf="@id/guideline85H"
+        app:layout_constraintBottom_toTopOf="@id/guideline76H"
         tools:listitem="@layout/item_commande"
         />
+
 
     <ImageView
         android:id="@+id/line"

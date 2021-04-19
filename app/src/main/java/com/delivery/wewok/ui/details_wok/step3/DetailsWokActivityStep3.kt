@@ -25,10 +25,11 @@ class DetailsWokActivityStep3 : AppCompatActivity() {
 
     companion object{
         var commandes = ArrayList<CommandeModel>()
+        lateinit var adapter : DessertsAdapter
     }
 
     private val viewModel: DetailsWokActivityStep3ViewModel by viewModels()
-    lateinit var adapter : DessertsAdapter
+
     var listDesserts = ArrayList<CommandeModel>()
 
 

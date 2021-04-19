@@ -24,8 +24,8 @@ class FruitsAdapter(context: Context, onClickListener:(position:Int) -> Unit): P
         items.mapIndexed { index, model ->
             if (index == position)
                 model.selected = ! model.selected
-            else
-                model.selected = false
+           /* else
+                model.selected = false*/
         }
         notifyDataSetChanged()
         return items.get(position)

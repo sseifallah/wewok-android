@@ -30,11 +30,11 @@ class DetailsWokActivityStep2 : AppCompatActivity() {
 
     companion object{
         var commandes = ArrayList<CommandeModel>()
+        lateinit var adapter : BoissonsAdapter
     }
 
 
     private val viewModel: DetailsWokActivityStep2ViewModel by viewModels()
-    lateinit var adapter : BoissonsAdapter
     var listBoisson = ArrayList<CommandeModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

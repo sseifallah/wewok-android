@@ -52,7 +52,7 @@ class ModeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_mode)
         if (Paper.book().contains(IID))
             id = Paper.book().read<Int>(IID)
-
+        Paper.book().delete(SAVED_ORDERS)
         viewModelC.userInfos(id)
 
         round_emporter.setOnClickListener {

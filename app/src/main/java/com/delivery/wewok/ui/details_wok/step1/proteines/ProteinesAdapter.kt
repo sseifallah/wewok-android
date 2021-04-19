@@ -25,8 +25,8 @@ class ProteinesAdapter(context: Context, onClickListener:(position:Int) -> Unit)
         items.mapIndexed { index, proteineModel ->
             if (index == position)
                 proteineModel.selected = ! proteineModel.selected
-            else
-                proteineModel.selected = false
+            /*else
+                proteineModel.selected = false*/
         }
       //  Log.i("PROTEINS_SELECTED",items.get(position).title.toString())
         notifyDataSetChanged()
@@ -42,6 +42,15 @@ class ProteinesAdapter(context: Context, onClickListener:(position:Int) -> Unit)
                 selected = CommandeModel(item.id!!,item.title!!,item.price!!,item.image,1)
         }
         return  selected
+    }
+
+    fun unselectItem(id :String){
+        items.find {
+            it.id.equals(id)
+        }?.let {
+            it.selected=false
+        }
+        notifyDataSetChanged()
     }
 
     fun unselectAll()

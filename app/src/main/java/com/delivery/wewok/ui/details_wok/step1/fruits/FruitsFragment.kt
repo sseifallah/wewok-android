@@ -51,9 +51,11 @@ class FruitsFragment : Fragment() {
     {
         var fruit = adapter.selectOrUnSelect(position)
         if (fruit.selected)
-            DetailsWokActivityStep1.selectedFruit = CommandeModel(fruit.id!!,fruit.title!!,fruit.price!!,fruit.image,1,true)
+            DetailsWokActivityStep1.selectedFruit.add(CommandeModel(fruit.id!!,fruit.title!!,fruit.price!!,fruit.image,1,true))
         else
-            DetailsWokActivityStep1.selectedFruit = null
+            DetailsWokActivityStep1.selectedFruit.removeAll {
+                it.id == fruit.id
+            }
     }
     fun unselectAll(){
         adapter.unselectAll()

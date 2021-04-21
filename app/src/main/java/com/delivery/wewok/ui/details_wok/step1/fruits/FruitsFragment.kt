@@ -12,6 +12,7 @@ import com.delivery.wewok.R
 import com.delivery.wewok.base.ext.init
 import com.delivery.wewok.data.model.CommandeModel
 import com.delivery.wewok.ui.details_wok.step1.DetailsWokActivityStep1
+import com.delivery.wewok.ui.details_wok.step1.autre.AutreAdapter
 import com.delivery.wewok.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_fromage.*
@@ -68,5 +69,8 @@ class FruitsFragment : Fragment() {
 
         @JvmStatic
         fun getName(context: Context) = context.getString(R.string.Fruits)
+
+        @JvmStatic
+        lateinit var adapter: FruitsAdapter
     }
 }

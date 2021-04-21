@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_fromage.*
 @AndroidEntryPoint
 class FromageFragment : Fragment() {
 
-    private lateinit var adapter: FromageAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,5 +67,8 @@ class FromageFragment : Fragment() {
 
         @JvmStatic
         fun getName(context: Context) = context.getString(R.string.Fromages)
+
+        @JvmStatic
+        lateinit var adapter: FromageAdapter
     }
 }

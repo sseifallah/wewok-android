@@ -46,6 +46,8 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
     var editAdresse :  String = ""
     var editCode : String = ""
 
+    var updated = false;
+
     private val viewModel: ConnectViewModel by viewModels()
     private val homeViewModel: HomeViewModel by viewModels()
     var userId =0
@@ -69,10 +71,11 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
             btn_back.visibility = View.VISIBLE
             btn_back.setOnClickListener {
                 if (liv)
-                    (activity as PaymentLivraisonActivity).setFragmentVisibility()
+                    (activity as PaymentLivraisonActivity).setFragmentVisibility(updated)
                 else
                     (activity as PaymentEmporterActivity).setFragmentVisibility()
             }
+        Log.i("PROFILE_EDITED"," : $updated")
             btn_logout.visibility = View.INVISIBLE
 
         getUserInfos()
@@ -203,13 +206,13 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
                     !editAdresse.equals("") &&
                     !editVille.equals("")) {
 
-                if (!edit_prenom.text.equals(firstName) ||
+                /*if (!edit_prenom.text.equals(firstName) ||
                         !edit_nom.text?.equals(lastName)!! ||
                         !edit_email.text.equals(email) ||
                         !edit_phone.text.equals(phone) ||
                         !edit_adresse.text.equals(adresse) ||
                         !edit_ville.text.equals(ville) ||
-                        !edit_code.text.equals(code)) {
+                        !edit_code.text.equals(code)) {*/
 
 
                     viewModel.updateUser(
@@ -230,8 +233,9 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
                     editVille = ""
                     editAdresse = ""
 
+                    updated = false
                     viewModel.updateUserLiveData.observe(requireActivity(), updateObserver)
-                }
+               // }
             } else if (edit_prenom.text.isEmpty())
                 edit_prenom.error = "Entrez votre prénom"
             else if (edit_nom.text?.equals("")!!)
@@ -266,7 +270,9 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
                                 homeViewModel.checkZone(editCode)
                                 homeViewModel.zoneLiveData.observe(this@ProfilEditFragment,zoneObserver)
                                 editCode  = ""
+                                updated = true
                                 getUserInfo()
+
                             }
 
                         }
@@ -320,8 +326,7 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
                     when (it!!.status){
                         Status.SUCCESS ->{
                             if (it.data?.status == true){
-                                setUserInfos(it.data)
-
+                               // updated =true
                             }
 
                         }
@@ -351,9 +356,10 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
 
     override fun onDestroy() {
         if (liv)
-            (activity as PaymentLivraisonActivity).setFragmentVisibility()
+            (activity as PaymentLivraisonActivity).setFragmentVisibility(updated)
         else
             (activity as PaymentEmporterActivity).setFragmentVisibility()
+        Log.i("PROFILE_EDITED"," : $updated")
         super.onDestroy()
 
     }

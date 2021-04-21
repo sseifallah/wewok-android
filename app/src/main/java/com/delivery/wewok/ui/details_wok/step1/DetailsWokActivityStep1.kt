@@ -62,28 +62,32 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         var selectedFruit = ArrayList<CommandeModel>()
         var selectedAutre = ArrayList<CommandeModel>()
         var basePrice : String ="0.0"
-
+        lateinit var proteinFrag :ProteinesFragment
+        lateinit var fromageFrag : FromageFragment
+        lateinit var fruitsFrag : FruitsFragment
+        lateinit var autreFrag : AutreFragment
+        lateinit var adapterRecyclerViewVotreBase : BasesAdapter
+        lateinit var adapterRecyclerViewRetirerIngredient : RetierIngredientsAdapter
+        lateinit var adapterRecyclerViewToppings : ToppingsAdapter
     }
 
     private val viewModel: DetailsWokActivityStep1ViewModel by viewModels()
     private val viewModelHome: HomeViewModel by viewModels()
-    lateinit var adapterRecyclerViewVotreBase : BasesAdapter
-    lateinit var adapterRecyclerViewRetirerIngredient : RetierIngredientsAdapter
 
-    lateinit var adapterRecyclerViewToppings : ToppingsAdapter
     lateinit var pagerAdapter : PagerAdapter
     val sauces = HomeActivity.menu.sauces.get(0).items?.get(0)?.ingredientItems
     var sauce = false
     var base = false
     var codePostal =""
     lateinit var selectedSauce : CommandeModel
-    var proteinFrag =ProteinesFragment.newInstance()
-    var fromageFrag = FromageFragment.newInstance()
-    var fruitsFrag= FruitsFragment.newInstance()
-    var autreFrag= AutreFragment.newInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        proteinFrag =ProteinesFragment.newInstance()
+        fromageFrag = FromageFragment.newInstance()
+        fruitsFrag= FruitsFragment.newInstance()
+        autreFrag= AutreFragment.newInstance()
         setContentView(R.layout.activity_details_wok_step1)
         layout_quantity = findViewById<LinearLayout>(R.id.ly_quantite)
         /*img_quantity = findViewById<AppCompatImageView>(R.id.icon_graniture)

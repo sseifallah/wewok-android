@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_product.view.lbl_title
 import kotlinx.android.synthetic.main.item_product.view.round_rect_view
 
 
-class CommandeAdapter (val context: Context,val updateValues:(id : String) -> Unit,val addNewCommande:() -> Unit): RecyclerView.Adapter<CommandeAdapter.CommandeViewHolder>() {
+class CommandeAdapter (val context: Context,val removeItem:(id : String) -> Unit,val addItem:(item : CommandeModel,pos : Int) -> Unit,val addNewCommande:() -> Unit): RecyclerView.Adapter<CommandeAdapter.CommandeViewHolder>() {
 
     protected var items = ArrayList<CommandeModel>()
 
@@ -51,15 +51,18 @@ class CommandeAdapter (val context: Context,val updateValues:(id : String) -> Un
         if(position != items.size) {
             holder.price.text = items[position].price + " €"
             holder.lblTitle.text = items[position].title
-            holder.qnt.text =  "x"+items[position].qunatity
             holder.img.setImage(items[position].image, items[position].title)
-
             holder.delete.setOnClickListener {
                 var id = items[position].id
                 items.removeAt(position)
-                updateValues(id)
+                removeItem(id)
                 notifyDataSetChanged()
-
+            }
+            holder.bnt_add_ing.setOnClickListener {
+                var item = items[position]
+                items.add(position+1 , item)
+                addItem(item,position+1)
+                notifyDataSetChanged()
             }
         }else{
             holder.btn_add.setOnClickListener {
@@ -77,9 +80,9 @@ class CommandeAdapter (val context: Context,val updateValues:(id : String) -> Un
         val lblTitle = itemView.lbl_title
         val img = itemView.img
         val round_rect_view = itemView.round_rect_view
-         val delete = itemView.btn_delete
-         val price = itemView.lbl_prix
-        val qnt = itemView.lbl_qnty
+        val delete = itemView.btn_delete
+        val price = itemView.lbl_prix
+        val bnt_add_ing = itemView.btn_add_ing
         val btn_add =  itemView.btn_add
 
 

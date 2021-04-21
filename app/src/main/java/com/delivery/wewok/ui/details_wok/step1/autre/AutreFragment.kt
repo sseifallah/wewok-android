@@ -13,6 +13,7 @@ import com.delivery.wewok.R
 import com.delivery.wewok.base.ext.init
 import com.delivery.wewok.data.model.CommandeModel
 import com.delivery.wewok.ui.details_wok.step1.DetailsWokActivityStep1
+import com.delivery.wewok.ui.details_wok.step1.fromage.FromageAdapter
 import com.delivery.wewok.ui.home.HomeActivity
 import com.mobilemovement.kotlintvmaze.base.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,8 +22,6 @@ import kotlinx.android.synthetic.main.fragment_autre.*
 @AndroidEntryPoint
 class AutreFragment : Fragment() {
 
-
-    private lateinit var adapter: AutreAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,5 +64,8 @@ class AutreFragment : Fragment() {
 
         @JvmStatic
         fun getName(context: Context) = context.getString(R.string.Autres)
+
+        @JvmStatic
+        lateinit var adapter: AutreAdapter
     }
 }

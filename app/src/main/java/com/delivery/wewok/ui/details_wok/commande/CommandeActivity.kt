@@ -74,7 +74,7 @@ class CommandeActivity : AppCompatActivity() {
     }
 
     private fun initRecycler() {
-        adapter = CommandeAdapter(this,this::updateValues,this::addNewCommande)
+        adapter = CommandeAdapter(this,this::removeItem,this::addItem,this::addNewCommande)
         recycler_commande.init(adapter, LinearLayoutManager.VERTICAL)
     }
 
@@ -86,26 +86,12 @@ class CommandeActivity : AppCompatActivity() {
 
     fun initUi(){
         if (! allCommandes.isNullOrEmpty()) {
-            /*var wok = CommandeModel("", "", DetailsWokActivityStep1.basePrice, "ic_guest_wok", 1)
-            for (com in allCommandes) {
-                if (com.wok == true) {
-                    wok.title += "\n ${com.title}"
-                    var priceWithoutComma = wok.price.replace(",",".")
-                    var compriceWithoutComma = com.price.replace(",",".")
-                    wok.price = (priceWithoutComma.toDouble() + compriceWithoutComma.toDouble()).toString()
-                } else
-                    commandes.add(com)
-            }
-            var priceWithoutComma = wok.price.replace(",",".")
-            var pr =  String.format("%.2f", priceWithoutComma.toDouble())
-            wok.price = pr
-            commandes.add(0, wok)*/
             commandes.addAll(allCommandes)
             adapter.setData(commandes)
             btn_next_cmd.setBackgroundResource(R.drawable.shape_top_corners_button)
             btn_next_cmd.isClickable = true
             btn_next_cmd.isEnabled = true
-            updateValues("")
+            updateValues()
         }
         else
         {
@@ -120,23 +106,30 @@ class CommandeActivity : AppCompatActivity() {
 
         btn_next_cmd.setOnClickListener {
             menuIds = ArrayList<String>()
-            for (item in allCommandes)
+            for (item in commandes)
                 menuIds.add(item.id)
             toPayment()
         }
-
     }
 
-
-    fun updateValues(id : String){
-        allCommandes.removeAll {
+    fun removeItem(id : String){
+        commandes.removeAll {
             it.id == id
         }
+        updateValues()
+    }
+
+     fun addItem(item : CommandeModel,index : Int){
+         commandes.add(index,item)
+         updateValues()
+     }
+
+    fun updateValues(){
 
         total = 0.0
         for (item in adapter.getItems()){
             var priceWithoutComma = item.price.replace(",",".")
-            var pr = (priceWithoutComma.toDouble()* item.qunatity)
+            var pr = priceWithoutComma.toDouble()
             var prix = String.format("%.2f", pr)
             var prixWithoutComma = prix.replace(",",".")
             total += prixWithoutComma.toDouble()
@@ -164,6 +157,13 @@ class CommandeActivity : AppCompatActivity() {
          commandes.clear()
          allCommandes.clear()
          DetailsWokActivityStep1.commandes.clear()
+         DetailsWokActivityStep1.adapterRecyclerViewRetirerIngredient.unselectAll()
+         DetailsWokActivityStep1.adapterRecyclerViewToppings.unselectAll()
+         DetailsWokActivityStep1.adapterRecyclerViewVotreBase.unselectAll()
+         DetailsWokActivityStep1.proteinFrag.unselectAll()
+         DetailsWokActivityStep1.fromageFrag.unselectAll()
+         DetailsWokActivityStep1.fruitsFrag.unselectAll()
+         DetailsWokActivityStep1.autreFrag.unselectAll()
          DetailsWokActivityStep2.commandes.clear()
          DetailsWokActivityStep2.adapter.unselectAll()
          DetailsWokActivityStep3.commandes.clear()

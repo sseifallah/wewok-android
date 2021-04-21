@@ -24,10 +24,19 @@ import kotlinx.android.synthetic.main.fragment_proteine.*
 @AndroidEntryPoint
 class ProteinesFragment : Fragment() {
 
+    companion object {
+        @JvmStatic
+        fun newInstance() = ProteinesFragment()
 
+        @JvmStatic
+        fun getName(context: Context) = context.getString(R.string.Protéines)
+
+        @JvmStatic
+        lateinit var adapter:ProteinesAdapter
+    }
 
     lateinit var proteine_id : String
-    private lateinit var adapter:ProteinesAdapter
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_proteine, container, false)
@@ -55,7 +64,7 @@ class ProteinesFragment : Fragment() {
         if (protein.selected == true) {
             DetailsWokActivityStep1.layout_quantity.visibility = View.VISIBLE
             //DetailsWokActivityStep1.selectedProtein.add(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,true))
-            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,true))
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,false))
             /*if (!protein.items.isNullOrEmpty()) {
                 if (!protein.items!![0].ingredientItems.isNullOrEmpty()) {
                     DetailsWokActivityStep1.selectedProtein.find {
@@ -127,11 +136,5 @@ class ProteinesFragment : Fragment() {
 
 
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = ProteinesFragment()
 
-        @JvmStatic
-        fun getName(context: Context) = context.getString(R.string.Protéines)
-    }
 }

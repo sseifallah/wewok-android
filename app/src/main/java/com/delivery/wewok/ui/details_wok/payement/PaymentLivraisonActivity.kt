@@ -73,7 +73,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         menuIds.clear()
         menuIds.addAll(CommandeActivity.menuIds)
         total = CommandeActivity.total
-        updateInformations()
+        updateInformations(false)
         for (com in DetailsWokActivityStep1.commandes)
             Log.i("All_Commandes"," ${com.title} ")
 
@@ -148,7 +148,7 @@ class PaymentLivraisonActivity : AppCompatActivity() {
 
 
 
-    fun updateInformations(){
+    fun updateInformations( checked : Boolean){
         if (Paper.book().contains(USER_ADR)) {
             client_adress = Paper.book().read<String>(USER_ADR)
         }
@@ -166,8 +166,8 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         Log.i("PAYMENT_ID"," : $id")
      //   var code =  Paper.book().read<String>(CODE_ZONE)
         Log.i("PAYMENT_CODE : "," $client_postcode")
-        zone_ville_updated = ((! client_postcode.isNullOrEmpty() ) && (! client_city.isNullOrEmpty()) )
-        Log.i("PAYMENT_CODE : ",zone_ville_updated.toString())
+        zone_ville_updated = checked
+        //Log.i("PAYMENT_CODE : ",zone_ville_updated.toString())
         if (Paper.book().contains(ZONE_CHECKED))
             zoneChecked = Paper.book().read(ZONE_CHECKED)
 
@@ -244,10 +244,11 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                 }
             }
 
-    fun setFragmentVisibility(){
+    fun setFragmentVisibility(checked: Boolean){
         Log.i("PAYMENT_UPDATE"," : UPDATED")
+        Log.i("PROFILE_EDITED PAY"," : $checked")
         payment_livraison_fragment_container.visibility = View.INVISIBLE
-        updateInformations()
+        updateInformations(checked)
     }
 
 

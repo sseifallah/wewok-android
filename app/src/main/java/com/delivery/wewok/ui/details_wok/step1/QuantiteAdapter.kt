@@ -12,7 +12,7 @@ import com.delivery.wewok.data.model.CommandeModel
 
 import kotlinx.android.synthetic.main.item_quantite.view.*
 
-class QuantiteAdapter(val context: Context, val setQuantiteGone:() -> Unit ,val unselectProteine:(id :String) -> Unit ) : RecyclerView.Adapter<QuantiteAdapter.CommandeViewHolder>() {
+class QuantiteAdapter(val context: Context, val setQuantiteGone:() -> Unit ,val unselectIngredient:(id :String,type : Int) -> Unit ) : RecyclerView.Adapter<QuantiteAdapter.CommandeViewHolder>() {
 
     protected var items = ArrayList<CommandeModel>()
     var qntItems = ArrayList<CommandeModel>()
@@ -66,7 +66,7 @@ class QuantiteAdapter(val context: Context, val setQuantiteGone:() -> Unit ,val 
                 holder.txt_qnt.text = items[position].qunatity.toString()
             }
             else {
-                unselectProteine(items[position].id)
+                unselectIngredient(items[position].id,items[position].type)
                 qntItems.remove(items[position])
                 items.remove(items[position])
                 if (this.items.size==0){

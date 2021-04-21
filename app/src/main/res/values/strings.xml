@@ -11,6 +11,7 @@
     <string name="txt_cmd_dispo">Votre commande sera disponible \ndans 30 min</string>
     <string name="mp_oublie">Mot de passe oublié ?</string>
     <string name="txt_zone">Vérifiez ta zone de livraison</string>
+    <string name="txt_remplir">Veuillez remplir toutes vos informations personnelles et vérifier votre adresses avant de passer une commande</string>
     <string name="txt_verification">Voulez vous confirmer \nla commande?</string>
     <string name="txt_retour">Retour au menu principal</string>
     <string name="txt_compte_login">Vous n’avez pas de compte ?</string>

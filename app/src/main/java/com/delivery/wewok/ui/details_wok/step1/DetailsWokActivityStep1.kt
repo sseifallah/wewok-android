@@ -19,6 +19,7 @@ import com.delivery.wewok.base.ext.init
 import com.delivery.wewok.base.ext.setImage
 import com.delivery.wewok.base.ext.toast
 import com.delivery.wewok.data.model.CommandeModel
+import com.delivery.wewok.data.model.WoksRawModel
 import com.delivery.wewok.ui.details_wok.commande.CommandeActivity
 import com.delivery.wewok.ui.details_wok.step1.autre.AutreFragment
 import com.delivery.wewok.ui.details_wok.step1.fromage.FromageFragment
@@ -88,6 +89,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         fromageFrag = FromageFragment.newInstance()
         fruitsFrag= FruitsFragment.newInstance()
         autreFrag= AutreFragment.newInstance()
+
         setContentView(R.layout.activity_details_wok_step1)
         layout_quantity = findViewById<LinearLayout>(R.id.ly_quantite)
         /*img_quantity = findViewById<AppCompatImageView>(R.id.icon_graniture)
@@ -210,7 +212,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         recyclerview_retier_ingredient.init(adapterRecyclerViewRetirerIngredient,LinearLayoutManager.HORIZONTAL)
         adapterRecyclerViewToppings =  ToppingsAdapter(this,this::onClickListnerToppingstItem)
         recyclerview_toppings.init(adapterRecyclerViewToppings,LinearLayoutManager.HORIZONTAL)
-        adapterRecyclerViewQuantite = QuantiteAdapter(this, this::setQuantiteGone,this::unselectProteine)
+        adapterRecyclerViewQuantite = QuantiteAdapter(this, this::setQuantiteGone,this::unselectIngredient)
         qnt_recycler.init(adapterRecyclerViewQuantite,LinearLayoutManager.VERTICAL)
     }
 
@@ -250,8 +252,14 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         layout_quantity.visibility = View.GONE
     }
 
-    fun unselectProteine(id :String){
-        proteinFrag.unselectProteine(id)
+    fun unselectIngredient(id :String , type : Int){
+        when(type){
+            1 -> proteinFrag.unselectProteine(id)
+            2 -> fromageFrag.unselectFromage(id)
+            3 -> fruitsFrag.unselectFruit(id)
+            4 -> autreFrag.unselectAutre(id)
+        }
+
     }
 
     fun checkContinue()
@@ -259,10 +267,12 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         if (base && sauce){
             btn_next.setBackgroundResource(R.drawable.shape_top_corners_button)
             btn_next.isClickable = true
+            btn_next.isEnabled = true
         }
         else {
             btn_next.setBackgroundResource(R.drawable.shape_top_corners_button_grey)
             btn_next.isClickable = false
+            btn_next.isEnabled = false
         }
     }
 
@@ -281,14 +291,10 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
                 wokCommande.addAll(adapterRecyclerViewRetirerIngredient.getSelectedItems())
             if ( ! adapterRecyclerViewToppings.getSelectedItems().isNullOrEmpty())
                 wokCommande.addAll(adapterRecyclerViewToppings.getSelectedItems())
-            if ( selectedFromage.size != 0)
-                wokCommande.addAll(selectedFromage)
-            if ( selectedFruit.size != 0)
-                wokCommande.addAll(selectedFruit)
+            /*if ( selectedFromage.size != 0)
+                wokCommande.addAll(selectedFromage)*/
             if ( adapterRecyclerViewQuantite.itemCount!= 0)
                 wokCommande.addAll(adapterRecyclerViewQuantite.getAllItems()!!)
-            if ( selectedAutre.size != 0)
-                wokCommande.addAll(selectedAutre)
             wokCommande.add(selectedSauce)
 
             var wok = CommandeModel("", "",basePrice, "ic_guest_wok", 1)

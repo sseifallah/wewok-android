@@ -13,6 +13,7 @@ import com.delivery.wewok.base.ext.init
 import com.delivery.wewok.data.model.CommandeModel
 import com.delivery.wewok.ui.details_wok.step1.DetailsWokActivityStep1
 import com.delivery.wewok.ui.details_wok.step1.autre.AutreAdapter
+import com.delivery.wewok.ui.details_wok.step1.proteines.ProteinesFragment
 import com.delivery.wewok.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_fromage.*
@@ -51,15 +52,22 @@ class FruitsFragment : Fragment() {
     private fun onClickItem(position:Int)
     {
         var fruit = adapter.selectOrUnSelect(position)
-        if (fruit.selected)
-            DetailsWokActivityStep1.selectedFruit.add(CommandeModel(fruit.id!!,fruit.title!!,fruit.price!!,fruit.image,1,true))
+        if (fruit.selected){
+            DetailsWokActivityStep1.layout_quantity.visibility = View.VISIBLE
+            // DetailsWokActivityStep1.selectedFruit.add(CommandeModel(fruit.id!!,fruit.title!!,fruit.price!!,fruit.image,1,true,3))
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(fruit.id!!,fruit.title!!,fruit.price!!,fruit.image,1,false,3))
+        }
+
         else
-            DetailsWokActivityStep1.selectedFruit.removeAll {
-                it.id == fruit.id
-            }
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.removeData(fruit.id!!)
+
     }
+    fun unselectFruit(id : String){
+        adapter.unselectItem(id)
+    }
+
     fun unselectAll(){
-        adapter.unselectAll()
+       adapter.unselectAll()
     }
 
 

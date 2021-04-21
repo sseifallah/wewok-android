@@ -33,6 +33,15 @@ class FromageAdapter(context: Context, onClickListener:(position:Int) -> Unit): 
 
     fun getItem(position: Int) : MenuItemRawModel = items[position]
 
+    fun unselectItem(id :String){
+        items.find {
+            it.id.equals(id)
+        }?.let {
+            it.selected=false
+        }
+        notifyDataSetChanged()
+    }
+
     fun getSelectedItems() : CommandeModel? {
         var selected : CommandeModel? = null
         for (item in items){

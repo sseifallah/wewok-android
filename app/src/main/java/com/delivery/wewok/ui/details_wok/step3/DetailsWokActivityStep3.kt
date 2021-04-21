@@ -80,7 +80,7 @@ class DetailsWokActivityStep3 : AppCompatActivity() {
     }
 
     fun showConfirmDialog(){
-        val cdd = CustomDialogClass(this,true)
+        val cdd = CustomDialogClass(this,"VERIF")
         cdd.getWindow()?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
         cdd.setCanceledOnTouchOutside(false)
         cdd.show()

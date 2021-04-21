@@ -50,12 +50,20 @@ class FromageFragment : Fragment() {
     private fun onClickItem(position:Int)
     {
         var fromage = adapter.selectOrUnSelect(position)
-        if (fromage.selected)
-            DetailsWokActivityStep1.selectedFromage.add(CommandeModel(fromage.id!!,fromage.title!!,fromage.price!!,fromage.image,1,true))
+        if (fromage.selected){
+            DetailsWokActivityStep1.layout_quantity.visibility = View.VISIBLE
+            //DetailsWokActivityStep1.selectedFromage.add(CommandeModel(fromage.id!!,fromage.title!!,fromage.price!!,fromage.image,1,true))
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(fromage.id!!,fromage.title!!,fromage.price!!,fromage.image,1,false,2))
+        }
+
         else
-            DetailsWokActivityStep1.selectedFromage.removeAll {
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.removeData(fromage.id!!)
+            /*DetailsWokActivityStep1.selectedFromage.removeAll {
                 it.id == fromage.id
-            }
+            }*/
+    }
+    fun unselectFromage(id : String){
+        adapter.unselectItem(id)
     }
     fun unselectAll(){
         adapter.unselectAll()

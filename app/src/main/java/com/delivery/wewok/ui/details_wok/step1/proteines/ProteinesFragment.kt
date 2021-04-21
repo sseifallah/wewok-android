@@ -64,7 +64,7 @@ class ProteinesFragment : Fragment() {
         if (protein.selected == true) {
             DetailsWokActivityStep1.layout_quantity.visibility = View.VISIBLE
             //DetailsWokActivityStep1.selectedProtein.add(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,true))
-            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,false))
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(protein.id!!,protein.title!!,protein.price!!,protein.image,1,false,1))
             /*if (!protein.items.isNullOrEmpty()) {
                 if (!protein.items!![0].ingredientItems.isNullOrEmpty()) {
                     DetailsWokActivityStep1.selectedProtein.find {

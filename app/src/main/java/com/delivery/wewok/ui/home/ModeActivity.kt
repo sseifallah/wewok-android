@@ -99,7 +99,7 @@ class ModeActivity : AppCompatActivity() {
                 delay(700)
 
 
-                cdd = CustomDialogClass(this@ModeActivity, false)
+                cdd = CustomDialogClass(this@ModeActivity, "CODE")
                 cdd.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
                 cdd.setCanceledOnTouchOutside(false)
                 cdd.show()

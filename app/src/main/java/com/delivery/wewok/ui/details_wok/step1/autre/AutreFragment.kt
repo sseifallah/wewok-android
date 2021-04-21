@@ -46,13 +46,20 @@ class AutreFragment : Fragment() {
     private fun onClickItem(position:Int)
     {
         var autre  = adapter.selectOrUnSelect(position)
-        if (autre.selected)
-            DetailsWokActivityStep1.selectedAutre.add(CommandeModel(autre.id!!,autre.title!!,autre.price!!,autre.image,1,true))
+        if (autre.selected){
+            DetailsWokActivityStep1.layout_quantity.visibility = View.VISIBLE
+            //  DetailsWokActivityStep1.selectedAutre.add(CommandeModel(autre.id!!,autre.title!!,autre.price!!,autre.image,1,true,4))
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.addData(CommandeModel(autre.id!!,autre.title!!,autre.price!!,autre.image,1,false,4))
+        }
+
         else
-            DetailsWokActivityStep1.selectedAutre.removeAll {
-                it.id == autre.id
-            }
+            DetailsWokActivityStep1.adapterRecyclerViewQuantite.removeData(autre.id!!)
     }
+
+    fun unselectAutre(id : String){
+        adapter.unselectItem(id)
+    }
+
     fun unselectAll(){
         adapter.unselectAll()
     }

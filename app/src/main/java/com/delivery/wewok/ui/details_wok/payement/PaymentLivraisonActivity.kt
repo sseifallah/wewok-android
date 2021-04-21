@@ -1,6 +1,8 @@
 package com.delivery.wewok.ui.details_wok.payement
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +27,7 @@ import com.delivery.wewok.ui.details_wok.step2.DetailsWokActivityStep2
 import com.delivery.wewok.ui.home.home.HomeViewModel
 import com.delivery.wewok.ui.home.profil.ProfilEditFragment
 import com.delivery.wewok.ui.home.profil.ProfilFragment
+import com.delivery.wewok.ui.utils.CustomDialogClass
 import com.delivery.wewok.utils.*
 import com.mobilemovement.kotlintvmaze.base.Resource
 import com.mobilemovement.kotlintvmaze.base.Status
@@ -37,6 +40,7 @@ import kotlinx.android.synthetic.main.activity_payment_livraison.payment_livrais
 import kotlinx.android.synthetic.main.activity_payment.pg_payment
 import kotlinx.android.synthetic.main.activity_payment.radio_carte
 import kotlinx.android.synthetic.main.activity_payment_livraison.*
+import kotlinx.android.synthetic.main.dialog_profil.*
 import kotlinx.android.synthetic.main.fragment_profil.*
 
 @AndroidEntryPoint
@@ -106,13 +110,14 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                         toast("Votre région n'est pas encore couverte pour la livraison.")
                 }
                 else {
-                    toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
-                    currentFragment = ProfilEditFragment(true)
+                    showInfoDialog()
+                    //toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
+                    /*currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
                             .replace(R.id.payment_livraison_fragment_container, currentFragment)
                             .addToBackStack(null)
                             .commit()
-                    payment_livraison_fragment_container.visibility = View.VISIBLE
+                    payment_livraison_fragment_container.visibility = View.VISIBLE*/
                 }
 
             }
@@ -133,20 +138,35 @@ class PaymentLivraisonActivity : AppCompatActivity() {
                         toast("Votre région n'est pas encore couverte pour la livraison.")
                 }
                 else {
-                    toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
-                    currentFragment = ProfilEditFragment(true)
+                    showInfoDialog()
+                    //toast("Veuillez remplir toutes vos informations personnelles avant de passer une commande")
+                    /*currentFragment = ProfilEditFragment(true)
                     fragmentManager.beginTransaction()
                             .replace(R.id.payment_livraison_fragment_container, currentFragment)
                             .addToBackStack(null)
                             .commit()
-                    payment_livraison_fragment_container.visibility = View.VISIBLE
+                    payment_livraison_fragment_container.visibility = View.VISIBLE*/
                 }
             }
         }
 
     }
 
-
+    fun showInfoDialog(){
+        val cdd = CustomDialogClass(this,"PROFIL")
+        cdd.getWindow()?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
+        cdd.setCanceledOnTouchOutside(false)
+        cdd.show()
+        cdd.btn_daccord.setOnClickListener {
+            cdd.dismiss()
+            currentFragment = ProfilEditFragment(true)
+            fragmentManager.beginTransaction()
+                .replace(R.id.payment_livraison_fragment_container, currentFragment)
+                .addToBackStack(null)
+                .commit()
+            payment_livraison_fragment_container.visibility = View.VISIBLE
+        }
+    }
 
     fun updateInformations( checked : Boolean){
         if (Paper.book().contains(USER_ADR)) {

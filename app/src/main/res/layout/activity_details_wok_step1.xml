@@ -180,6 +180,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:clickable="false"
+        android:enabled="false"
         android:background="@drawable/shape_top_corners_button_grey"
         app:layout_constraintTop_toTopOf="@+id/guideline89H"
         android:text="@string/continuer"

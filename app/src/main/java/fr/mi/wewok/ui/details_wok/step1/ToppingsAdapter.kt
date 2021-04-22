@@ -31,7 +31,7 @@ class ToppingsAdapter(context: Context, onClickListener:(position:Int) -> Unit):
         var selected = ArrayList<CommandeModel>()
         for (item in items){
             if (item.selected == true)
-                selected.add(CommandeModel(item.id!!,item.title!!,item.price!!,item.image,1,true))
+                selected.add(CommandeModel(item.id!!,item.title!!,item.price!!,item.image,1,false))
         }
         return  selected
     }

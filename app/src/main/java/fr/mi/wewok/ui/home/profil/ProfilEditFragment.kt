@@ -308,6 +308,10 @@ class ProfilEditFragment(var liv : Boolean): Fragment() {
                             Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         }
                     }
+                    if (liv)
+                        (activity as PaymentLivraisonActivity).setFragmentVisibility(updated)
+                    else
+                        (activity as PaymentEmporterActivity).setFragmentVisibility()
                 }
             }
 

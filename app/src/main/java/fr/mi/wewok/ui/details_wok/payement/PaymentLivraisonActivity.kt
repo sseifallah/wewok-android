@@ -186,9 +186,13 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         if (Paper.book().contains(FRAIS_LIVRAISON)){
             frais = Paper.book().read(FRAIS_LIVRAISON)
             if (! frais.isNullOrEmpty()) {
-                txt_frais3.text = "Frais de livraison : $frais"
-                txt_frais1.text = "Frais de livraison : $frais"
-                txt_frais2.text = "Frais : $frais"
+                var fraisWithoutComma = frais.substring(0,frais.length-2).replace(",",".")
+                var prix = fraisWithoutComma.toDouble()
+                var tva = prix/5
+                var tax = String.format("%.2f",tva)
+                var taxWithoutComma = tax.replace(",",".")
+                txt_frais3.text = "Frais de livraison : $frais/ Dont TVA 20% : "+ taxWithoutComma+ "€"
+
             }
         }
     }

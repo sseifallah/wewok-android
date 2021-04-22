@@ -138,14 +138,14 @@ class CommandeActivity : AppCompatActivity() {
             txt_tax.text = "Dont TVA 10% : $tax€"
         }
         else if(mode.equals("MODE_LIVRAISON")) {
-            var tax = String.format("%.2f", total/5)
-            txt_tax.text = "Dont TVA 20% : $tax€"
+            var tax = String.format("%.2f", total/10)
+            txt_tax.text = "Dont TVA 10% : $tax€"
         }
 
     }
 
      fun addNewCommande(){
-         if(!commandes.isNullOrEmpty()) {
+        // if(!commandes.isNullOrEmpty()) {
              Log.i("CMD_ACT", "allCommandes size : ${commandes.size}")
              for (com in commandes)
                  Log.i("CMD_ACT", "allCommandes : ${com.title}")
@@ -165,7 +165,7 @@ class CommandeActivity : AppCompatActivity() {
              DetailsWokActivityStep3.commandes.clear()
              DetailsWokActivityStep3.adapter.unselectAll()
              startActivity(Intent(this, DetailsWokActivityStep1::class.java))
-         }
+         //}
      }
     fun toPayment(){
         //toast(" mode : $mode")

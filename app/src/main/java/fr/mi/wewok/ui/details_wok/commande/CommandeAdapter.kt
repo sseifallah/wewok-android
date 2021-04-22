@@ -63,6 +63,9 @@ class CommandeAdapter (val context: Context,val removeItem:(id : String) -> Unit
                 notifyDataSetChanged()
             }
         }else{
+            if (items.size ==0){
+                holder.btn_add.visibility = View.INVISIBLE
+            }
             holder.btn_add.setOnClickListener {
                 addNewCommande()
             }

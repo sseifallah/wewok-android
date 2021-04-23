@@ -102,7 +102,27 @@ class CommandeActivity : AppCompatActivity() {
         btn_next_cmd.setOnClickListener {
             menuIds = ArrayList<String>()
             for (item in commandes)
-                menuIds.add(item.id)
+                if (item.id.contains("extra-0-0", ignoreCase = true)){
+                    menuIds.add("extra-0")
+                    menuIds.add("extra-0-0")
+                    menuIds.add(item.id)
+                }else if (item.id.contains("extra-0-1", ignoreCase = true)){
+                    menuIds.add("extra-0")
+                    menuIds.add("extra-0-1")
+                    menuIds.add(item.id)
+                }else if (item.id.contains("extra-1-0", ignoreCase = true)){
+                    menuIds.add("extra-1")
+                    menuIds.add("extra-1-0")
+                    menuIds.add(item.id)
+                }
+                else{
+                    menuIds.add(item.id)
+                }
+            Log.i("menu id array",  " $menuIds ");
+            Log.i("menu id array",  menuIds.toString());
+
+            Log.v("menu id array",  menuIds.toString());
+            println(menuIds)
             toPayment()
         }
     }

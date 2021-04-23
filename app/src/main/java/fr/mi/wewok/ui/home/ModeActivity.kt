@@ -25,6 +25,8 @@ import fr.mi.wewok.utils.*
 import com.mobilemovement.kotlintvmaze.base.Resource
 import com.mobilemovement.kotlintvmaze.base.Status
 import dagger.hilt.android.AndroidEntryPoint
+import fr.mi.wewok.utils.notifications.MyFirebaseInstanceIDService
+import fr.mi.wewok.utils.notifications.NotificationsViewModel
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_mode.*
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +66,7 @@ class ModeActivity : AppCompatActivity() {
                 delay(700)
 
                 Paper.book().write(MODE_WOK, MODE_EMPORTER)
+                MyFirebaseInstanceIDService().onNewToken("token")
                 startActivity(Intent(baseContext, HomeActivity::class.java))
                 //textview will be invisible after the specified amount
                 // of time elapses, here it is 1000 milliseconds
@@ -127,6 +130,7 @@ class ModeActivity : AppCompatActivity() {
 
                             Toast.makeText(this@ModeActivity, "Succès", Toast.LENGTH_SHORT).show()
                             Paper.book().write(MODE_WOK, MODE_LIVRAISON)
+                            MyFirebaseInstanceIDService().onNewToken("token")
                             startActivity(Intent(this@ModeActivity, HomeActivity::class.java))
                             cdd.dismiss()
                         }

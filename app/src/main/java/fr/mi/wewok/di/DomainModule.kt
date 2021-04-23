@@ -17,4 +17,7 @@ abstract class DomainModule {
 
     @Binds
     internal abstract fun provideCommandeRepository(CommandeRepository: CommandeRepositoryImpl): CommandeRepository
+
+    @Binds
+    internal abstract fun provideNotificationsRepository(NotificationsRepository: NotificationsRepositoryImpl): NotificationsRepository
 }

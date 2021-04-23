@@ -68,7 +68,11 @@ class PaymentLivraisonActivity : AppCompatActivity() {
         btn_next_payment_liv.isEnabled = false
         menuIds.clear()
         menuIds.addAll(CommandeActivity.menuIds)
-        total = CommandeActivity.total
+        var cmdTotal =  CommandeActivity.total
+        Log.i("TOTAL_CMD"," LIV : "+cmdTotal.toString())
+        var prix = String.format("%.2f", cmdTotal)
+        var prixWithoutComma = prix.replace(",",".")
+        total = prixWithoutComma.toDouble()
         updateInformations(false)
         for (com in DetailsWokActivityStep1.commandes)
             Log.i("All_Commandes"," ${com.title} ")

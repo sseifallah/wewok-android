@@ -13,17 +13,24 @@ import fr.mi.wewok.ui.details_wok.step3.DetailsWokActivityStep3
 import fr.mi.wewok.ui.home.HomeActivity
 import fr.mi.wewok.utils.ORDER_ID
 import dagger.hilt.android.AndroidEntryPoint
+import fr.mi.wewok.utils.IID
+import fr.mi.wewok.utils.TOKEN
+import fr.mi.wewok.utils.notifications.NotificationsViewModel
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_success.*
 
  @AndroidEntryPoint
 class SuccessActivity : AppCompatActivity() {
      private val viewModel: CommandesViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+     private val viewModelNotifications: NotificationsViewModel by viewModels()
+     var numCmd:Int = 0
+     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        numCmd = Paper.book().read<Int>(ORDER_ID)
+         sendNotif()
         setContentView(R.layout.fragment_success)
-        var numCmd = Paper.book().read<Int>(ORDER_ID)
+
+
         viewModel.updateStatus(numCmd,"approved")
         CommandeActivity.commandes.clear()
         CommandeActivity.allCommandes.clear()
@@ -35,5 +42,10 @@ class SuccessActivity : AppCompatActivity() {
             startActivity(Intent(this, HomeActivity::class.java))
         }
     }
+
+     fun sendNotif(){
+         var id =  Paper.book().read<Int>(IID)
+         viewModelNotifications.sendNotifiction(id,"Commande enregistré avec succès!","Votre numéro de commande \nest : $numCmd")
+     }
 }
 

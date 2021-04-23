@@ -129,7 +129,7 @@ class CommandeActivity : AppCompatActivity() {
                     }
                 }
                 else {
-                    Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.wok}")
+                    Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.price}")
                     menuIds.add(item.id)
                 }
             }

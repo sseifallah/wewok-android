@@ -14,6 +14,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import fr.mi.wewok.data.remote_servise.NotificationsService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -92,4 +93,8 @@ object DataModule {
     @Provides
     @Singleton
     internal fun provideCommandeServise(retrofit: Retrofit):  CommandeService = retrofit.create()
+
+    @Provides
+    @Singleton
+    internal fun provideNotificationsServise(retrofit: Retrofit):  NotificationsService = retrofit.create()
 }

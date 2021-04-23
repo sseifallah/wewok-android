@@ -60,7 +60,11 @@ class PaymentEmporterActivity : AppCompatActivity() {
         btn_next_payment_emporter.isEnabled = false
         menuIds.clear()
         menuIds.addAll(CommandeActivity.menuIds)
-        total = CommandeActivity.total
+        var cmdTotal =  CommandeActivity.total
+        Log.i("TOTAL_CMD"," EMP : "+cmdTotal.toString())
+        var prix = String.format("%.2f", cmdTotal)
+        var prixWithoutComma = prix.replace(",",".")
+        total = prixWithoutComma.toDouble()
         updateInformations()
         for (com in DetailsWokActivityStep1.commandes)
             Log.i("All_Commandes"," ${com.title} ")

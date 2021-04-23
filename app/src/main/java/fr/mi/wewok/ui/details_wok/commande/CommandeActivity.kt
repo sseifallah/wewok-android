@@ -132,25 +132,6 @@ class CommandeActivity : AppCompatActivity() {
                     Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.wok}")
                     menuIds.add(item.id)
                 }
-               /* if (item.id.contains("extra-0-0", ignoreCase = true)) {
-                    Log.i("CMD_ID", " : 0-0 ${item.id} : ${item.title}")
-                    menuIds.add("extra-0")
-                    menuIds.add("extra-0-0")
-                    menuIds.add(item.id)
-                } else if (item.id.contains("extra-0-1", ignoreCase = true)) {
-                    Log.i("CMD_ID", " : 0-1 ${item.id} : ${item.title}")
-                    menuIds.add("extra-0")
-                    menuIds.add("extra-0-1")
-                    menuIds.add(item.id)
-                } else if (item.id.contains("extra-1-0", ignoreCase = true)) {
-                    Log.i("CMD_ID", " : 1-0 ${item.id} : ${item.title}")
-                    menuIds.add("extra-1")
-                    menuIds.add("extra-1-0")
-                    menuIds.add(item.id)
-                } else {
-                    Log.i("CMD_ID", " : else ${item.id} : ${item.title}")
-                    menuIds.add(item.id)
-                }*/
             }
 
             Log.i("CMD_ID_ALL",  menuIds.toString());

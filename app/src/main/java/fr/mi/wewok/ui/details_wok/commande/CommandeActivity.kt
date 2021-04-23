@@ -106,27 +106,27 @@ class CommandeActivity : AppCompatActivity() {
                 if (item.wok == true) {
                     Log.i("CMD_ID", " true")
                     var wokIds = item.id.split(",").toTypedArray()
-                    Log.i("CMD_ID", " ID SPLT $wokIds")
-                    for(id in wokIds)
+                    for(id in wokIds) {
                         if (id.contains("extra-0-0", ignoreCase = true)) {
                             Log.i("CMD_ID", " : 0-0 ${id} : ${title}")
                             menuIds.add("extra-0")
                             menuIds.add("extra-0-0")
-                            menuIds.add(item.id)
+                            menuIds.add(id)
                         } else if (id.contains("extra-0-1", ignoreCase = true)) {
                             Log.i("CMD_ID", " : 0-1 ${id} : ${title}")
                             menuIds.add("extra-0")
                             menuIds.add("extra-0-1")
-                            menuIds.add(item.id)
+                            menuIds.add(id)
                         } else if (id.contains("extra-1-0", ignoreCase = true)) {
                             Log.i("CMD_ID", " : 1-0 ${id} : ${title}")
                             menuIds.add("extra-1")
                             menuIds.add("extra-1-0")
-                            menuIds.add(item.id)
+                            menuIds.add(id)
                         } else {
                             Log.i("CMD_ID", " : else ${id} : ${title}")
-                            menuIds.add(item.id)
+                            menuIds.add(id)
                         }
+                    }
                 }
                 else {
                     Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.wok}")

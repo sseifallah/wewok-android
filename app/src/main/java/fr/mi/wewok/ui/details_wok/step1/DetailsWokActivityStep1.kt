@@ -286,9 +286,10 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
                 wokCommande.addAll(adapterRecyclerViewQuantite.getAllItems()!!)
             wokCommande.add(selectedSauce)
 
-            var wok = CommandeModel("", "",basePrice, "ic_guest_wok", 1)
+            var wok = CommandeModel("", "",basePrice, "ic_guest_wok", 1,true)
             for (com in wokCommande) {
                 if (com.wok == true) {
+                    wok.id+= com.id+","
                     if (com.qunatity == 1)
                         wok.title += "\n ${com.title}"
                     else
@@ -303,6 +304,8 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
             var priceWithoutComma = wok.price.replace(",",".")
             var pr =  String.format("%.2f", priceWithoutComma.toDouble())
             wok.price = pr
+            wok.id= wok.id.subSequence(0,wok.id.length-1) as String
+            Log.i("CMD_ID"," : wok id  ${wok.id} ")
             commandes.add(0, wok)
            // commandes.add(selectedSauce)
             val intent = Intent(this, DetailsWokActivityStep2::class.java)

@@ -101,28 +101,60 @@ class CommandeActivity : AppCompatActivity() {
 
         btn_next_cmd.setOnClickListener {
             menuIds = ArrayList<String>()
-            for (item in commandes)
-                if (item.id.contains("extra-0-0", ignoreCase = true)){
+            //Log.i("CMD_ID", " CMD ")
+            for (item in commandes) {
+                if (item.wok == true) {
+                    Log.i("CMD_ID", " true")
+                    var wokIds = item.id.split(",").toTypedArray()
+                    Log.i("CMD_ID", " ID SPLT $wokIds")
+                    for(id in wokIds)
+                        if (id.contains("extra-0-0", ignoreCase = true)) {
+                            Log.i("CMD_ID", " : 0-0 ${id} : ${title}")
+                            menuIds.add("extra-0")
+                            menuIds.add("extra-0-0")
+                            menuIds.add(item.id)
+                        } else if (id.contains("extra-0-1", ignoreCase = true)) {
+                            Log.i("CMD_ID", " : 0-1 ${id} : ${title}")
+                            menuIds.add("extra-0")
+                            menuIds.add("extra-0-1")
+                            menuIds.add(item.id)
+                        } else if (id.contains("extra-1-0", ignoreCase = true)) {
+                            Log.i("CMD_ID", " : 1-0 ${id} : ${title}")
+                            menuIds.add("extra-1")
+                            menuIds.add("extra-1-0")
+                            menuIds.add(item.id)
+                        } else {
+                            Log.i("CMD_ID", " : else ${id} : ${title}")
+                            menuIds.add(item.id)
+                        }
+                }
+                else {
+                    Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.wok}")
+                    menuIds.add(item.id)
+                }
+               /* if (item.id.contains("extra-0-0", ignoreCase = true)) {
+                    Log.i("CMD_ID", " : 0-0 ${item.id} : ${item.title}")
                     menuIds.add("extra-0")
                     menuIds.add("extra-0-0")
                     menuIds.add(item.id)
-                }else if (item.id.contains("extra-0-1", ignoreCase = true)){
+                } else if (item.id.contains("extra-0-1", ignoreCase = true)) {
+                    Log.i("CMD_ID", " : 0-1 ${item.id} : ${item.title}")
                     menuIds.add("extra-0")
                     menuIds.add("extra-0-1")
                     menuIds.add(item.id)
-                }else if (item.id.contains("extra-1-0", ignoreCase = true)){
+                } else if (item.id.contains("extra-1-0", ignoreCase = true)) {
+                    Log.i("CMD_ID", " : 1-0 ${item.id} : ${item.title}")
                     menuIds.add("extra-1")
                     menuIds.add("extra-1-0")
                     menuIds.add(item.id)
-                }
-                else{
+                } else {
+                    Log.i("CMD_ID", " : else ${item.id} : ${item.title}")
                     menuIds.add(item.id)
-                }
-            Log.i("menu id array",  " $menuIds ");
-            Log.i("menu id array",  menuIds.toString());
+                }*/
+            }
 
-            Log.v("menu id array",  menuIds.toString());
-            println(menuIds)
+            Log.i("CMD_ID_ALL",  menuIds.toString());
+
             toPayment()
         }
     }

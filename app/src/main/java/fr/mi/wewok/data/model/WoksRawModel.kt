@@ -29,4 +29,8 @@ data class WoksRawModel(
 
     @SerializedName("Boissons")
     val boissons:List<MenuItemRawModel>,
+
+    @SerializedName("Couverts")
+    val couverts:List<MenuItemRawModel>,
+
 )

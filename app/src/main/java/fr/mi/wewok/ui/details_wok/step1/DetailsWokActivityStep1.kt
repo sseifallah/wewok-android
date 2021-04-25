@@ -66,10 +66,12 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
 
     lateinit var pagerAdapter : PagerAdapter
     val sauces = HomeActivity.menu.sauces.get(0).items?.get(0)?.ingredientItems
+    val couverts = HomeActivity.menu.couverts.get(0).items?.get(0)?.ingredientItems
     var sauce = false
     var base = false
     var codePostal =""
     lateinit var selectedSauce : CommandeModel
+    lateinit var selectedCouv : CommandeModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,6 +143,33 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
             }
         }
 
+
+        couverts_group.setOnCheckedChangeListener { group, checkedId ->
+            var id =  checkedId
+            Log.i("CHECKEID_BOX"," $checkedId $group")
+            if (checkedId > couverts_group.size){
+                id = (checkedId % couverts_group.size)-1
+                Log.i("CHECKEID", " : " + id.toString())
+                if (id == -1){
+                    id =  couverts_group.size-1
+                }
+                //  Log.i("CHECKEID", " Size : " + sauce_group.size)
+                var couv = couverts?.get(id)
+
+                Log.i("CHECKEID", " : "+couv?.name)
+                selectedCouv = CommandeModel(couv?.id!!,couv?.name!!,couv?.price!!,couv?.image,1,true)
+            }
+            else {
+                Log.i("CHECKEID", " ch : " + (checkedId - 1).toString())
+                Log.i("CHECKEID", " ch Size : " + couverts_group.size)
+                var couv = couverts?.get(checkedId - 1)
+                Log.i("CHECKEID", " ch : "+couv?.name)
+
+                Log.i("All_Commandes", "couv $couv")
+                selectedCouv = CommandeModel(couv?.id!!, couv?.name!!, couv?.price!!, couv?.image, 1, true)
+            }
+        }
+
         btn_cart.setOnClickListener {
             toCommandes()
         }
@@ -170,6 +199,36 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
                     rb.setPadding(0, 20, 0, 20)
                     rb.buttonTintList = myColorStateList
                     sauce_group.addView(rb)
+                }
+            }
+        }
+
+        if (couverts_group.isEmpty()) {
+            if (couverts != null) {
+                for (radio in couverts) {
+                    var boxx = CheckBox(this)
+                    boxx.text = radio.name+"RG"
+                    boxx.setOnCheckedChangeListener { buttonView, isChecked ->
+                        Log.i("CHECK_BOX", "checked")
+                    }
+                    boxx.setPadding(0, 20, 0, 20)
+                    boxx.buttonTintList = myColorStateList
+                    couverts_group.addView(boxx)
+                   /* var rb = RadioButton(this)
+                    rb.text = radio.name
+
+                    // rb.layoutParams = RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, 35)
+                    rb.setPadding(0, 20, 0, 20)
+                    rb.buttonTintList = myColorStateList
+                    couverts_group.addView(rb)*/
+                   /* var box = CheckBox(this)
+                    box.text = radio.name
+                    box.setOnCheckedChangeListener { buttonView, isChecked ->
+                        Log.i("CHECK_BOX", "checked")
+                    }
+                    box.setPadding(0, 20, 0, 20)
+                    box.buttonTintList = myColorStateList
+                    couv_ll.addView(box)*/
                 }
             }
         }
@@ -285,6 +344,8 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
             if ( adapterRecyclerViewQuantite.itemCount!= 0)
                 wokCommande.addAll(adapterRecyclerViewQuantite.getAllItems()!!)
             wokCommande.add(selectedSauce)
+       //     if (selecte)
+          //  wokCommande.add(selectedCouv)
 
             var wok = CommandeModel("", "",basePrice, "ic_guest_wok", 1,true)
             for (com in wokCommande) {

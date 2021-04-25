@@ -42,6 +42,7 @@ class ModeActivity : AppCompatActivity() {
     var id = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_mode)
         if (Paper.book().contains(IID))
             id = Paper.book().read<Int>(IID)
@@ -66,7 +67,7 @@ class ModeActivity : AppCompatActivity() {
                 delay(700)
 
                 Paper.book().write(MODE_WOK, MODE_EMPORTER)
-                MyFirebaseInstanceIDService().onNewToken("token")
+
                 startActivity(Intent(baseContext, HomeActivity::class.java))
                 //textview will be invisible after the specified amount
                 // of time elapses, here it is 1000 milliseconds
@@ -130,7 +131,7 @@ class ModeActivity : AppCompatActivity() {
 
                             Toast.makeText(this@ModeActivity, "Succès", Toast.LENGTH_SHORT).show()
                             Paper.book().write(MODE_WOK, MODE_LIVRAISON)
-                            MyFirebaseInstanceIDService().onNewToken("token")
+
                             startActivity(Intent(this@ModeActivity, HomeActivity::class.java))
                             cdd.dismiss()
                         }

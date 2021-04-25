@@ -41,7 +41,6 @@ class MyFirebaseInstanceIDService : FirebaseMessagingService() {
         var id =  Paper.book().read<Int>(IID)
         Log.i("TOKEN_TT", " UID: $id")
         Paper.book().write<String>(TOKEN,token)
-
     }
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)

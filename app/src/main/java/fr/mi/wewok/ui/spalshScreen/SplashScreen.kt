@@ -1,14 +1,17 @@
 package fr.mi.wewok.ui.spalshScreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.annotation.WorkerThread
+import androidx.appcompat.app.AppCompatActivity
 import fr.mi.wewok.R
 import fr.mi.wewok.ui.auth.AuthActivity
 import fr.mi.wewok.ui.home.ModeActivity
 import fr.mi.wewok.utils.CONNECTED
+import fr.mi.wewok.utils.notifications.MyFirebaseInstanceIDService
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.coroutines.Dispatchers
@@ -16,10 +19,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+
 class SplashScreen : AppCompatActivity() {
     var connected =false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_splash_screen)
         val animation = AnimationUtils.loadAnimation(baseContext, R.anim.fade_in)
 
@@ -29,6 +34,7 @@ class SplashScreen : AppCompatActivity() {
         //  btn_next.startAnimation(animation)
         GlobalScope.launch (Dispatchers.Main)
         {
+            generateToken()
             delay(6000)
 
             btn_next.startAnimation(animation)
@@ -42,5 +48,11 @@ class SplashScreen : AppCompatActivity() {
            else
                startActivity(Intent(this@SplashScreen,AuthActivity::class.java))
        }
+    }
+
+    @WorkerThread
+    fun generateToken() {
+        Log.i("TOKEN_TT","methode Called !")
+        MyFirebaseInstanceIDService().onNewToken("token")
     }
 }

@@ -122,13 +122,19 @@ class CommandeActivity : AppCompatActivity() {
                             menuIds.add("extra-1")
                             menuIds.add("extra-1-0")
                             menuIds.add(id)
-                        } else {
+                        } else if (id.contains("extra-55-0", ignoreCase = true)) {
+                            Log.i("CMD_ID", " : 1-0 ${id} : ${title}")
+                            menuIds.add("extra-55")
+                            menuIds.add("extra-55-0")
+                            menuIds.add(id)
+                        }else {
                             Log.i("CMD_ID", " : else ${id} : ${title}")
                             menuIds.add(id)
                         }
                     }
                 }
                 else {
+
                     Log.i("CMD_ID", " : else false ${item.id} : ${item.title}  ${item.price}")
                     menuIds.add(item.id)
                 }

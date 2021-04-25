@@ -12,6 +12,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.view.isEmpty
 import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.button.MaterialButton
+import dagger.hilt.android.AndroidEntryPoint
 import fr.mi.wewok.R
 import fr.mi.wewok.base.ext.init
 import fr.mi.wewok.base.ext.setImage
@@ -24,18 +26,11 @@ import fr.mi.wewok.ui.details_wok.step1.proteines.ProteinesFragment
 import fr.mi.wewok.ui.details_wok.step2.DetailsWokActivityStep2
 import fr.mi.wewok.ui.home.HomeActivity
 import fr.mi.wewok.ui.home.home.HomeViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details_wok_step1.*
-import kotlinx.android.synthetic.main.activity_details_wok_step1.btn_back
-import kotlinx.android.synthetic.main.activity_details_wok_step1.btn_cart
-import kotlinx.android.synthetic.main.activity_details_wok_step1.lbl_description
-import kotlinx.android.synthetic.main.activity_details_wok_step1.lbl_price
-import kotlinx.android.synthetic.main.activity_details_wok_step1.lbl_title
-import kotlinx.android.synthetic.main.activity_details_wok_step1.roundedImageView
 
 
 @AndroidEntryPoint
-class DetailsWokActivityStep1 : AppCompatActivity() {
+class DetailsWokActivityStep1 : AppCompatActivity() , CompoundButton.OnCheckedChangeListener{
 
     companion object{
 
@@ -71,7 +66,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
     var base = false
     var codePostal =""
     lateinit var selectedSauce : CommandeModel
-    lateinit var selectedCouv : CommandeModel
+    var selectedCouv = ArrayList<CommandeModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -144,31 +139,6 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         }
 
 
-        couverts_group.setOnCheckedChangeListener { group, checkedId ->
-            var id =  checkedId
-            Log.i("CHECKEID_BOX"," $checkedId $group")
-            if (checkedId > couverts_group.size){
-                id = (checkedId % couverts_group.size)-1
-                Log.i("CHECKEID", " : " + id.toString())
-                if (id == -1){
-                    id =  couverts_group.size-1
-                }
-                //  Log.i("CHECKEID", " Size : " + sauce_group.size)
-                var couv = couverts?.get(id)
-
-                Log.i("CHECKEID", " : "+couv?.name)
-                selectedCouv = CommandeModel(couv?.id!!,couv?.name!!,couv?.price!!,couv?.image,1,true)
-            }
-            else {
-                Log.i("CHECKEID", " ch : " + (checkedId - 1).toString())
-                Log.i("CHECKEID", " ch Size : " + couverts_group.size)
-                var couv = couverts?.get(checkedId - 1)
-                Log.i("CHECKEID", " ch : "+couv?.name)
-
-                Log.i("All_Commandes", "couv $couv")
-                selectedCouv = CommandeModel(couv?.id!!, couv?.name!!, couv?.price!!, couv?.image, 1, true)
-            }
-        }
 
         btn_cart.setOnClickListener {
             toCommandes()
@@ -204,23 +174,38 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
         }
 
         if (couverts_group.isEmpty()) {
+            var i = 0
             if (couverts != null) {
                 for (radio in couverts) {
-                    var boxx = CheckBox(this)
+                    val row = TableRow(this)
+                    row.id = i
+                    row.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
+                    val checkBox = CheckBox(this)
+                    checkBox.setPadding(0, 20, 0, 20)
+                    checkBox.id = i
+                    checkBox.buttonTintList = myColorStateList
+                    checkBox.setText(radio.name)
+                    checkBox.setOnCheckedChangeListener(this)
+                    row.addView(checkBox)
+                    couv_ll.addView(row)
+
+                    i++
+                    /*var boxx = CheckBox(this)
                     boxx.text = radio.name+"RG"
                     boxx.setOnCheckedChangeListener { buttonView, isChecked ->
-                        Log.i("CHECK_BOX", "checked")
+                        Log.i("CHECK_BOX", "checked $i")
                     }
                     boxx.setPadding(0, 20, 0, 20)
                     boxx.buttonTintList = myColorStateList
                     couverts_group.addView(boxx)
+                    i++*/
                    /* var rb = RadioButton(this)
                     rb.text = radio.name
 
                     // rb.layoutParams = RadioGroup.LayoutParams(RadioGroup.LayoutParams.MATCH_PARENT, 35)
                     rb.setPadding(0, 20, 0, 20)
                     rb.buttonTintList = myColorStateList
-                    couverts_group.addView(rb)*/
+                    couv_ll.addView(rb)*/
                    /* var box = CheckBox(this)
                     box.text = radio.name
                     box.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -335,15 +320,20 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
             commandes.clear()
 
             wokCommande.add(adapterRecyclerViewVotreBase.getSelectedItems())
+            wokCommande.add(selectedSauce)
             if ( ! adapterRecyclerViewRetirerIngredient.getSelectedItems().isNullOrEmpty())
                 wokCommande.addAll(adapterRecyclerViewRetirerIngredient.getSelectedItems())
+            if (! selectedCouv.isNullOrEmpty())
+                wokCommande.addAll(selectedCouv)
+
             if ( ! adapterRecyclerViewToppings.getSelectedItems().isNullOrEmpty())
                 wokCommande.addAll(adapterRecyclerViewToppings.getSelectedItems())
             /*if ( selectedFromage.size != 0)
                 wokCommande.addAll(selectedFromage)*/
             if ( adapterRecyclerViewQuantite.itemCount!= 0)
                 wokCommande.addAll(adapterRecyclerViewQuantite.getAllItems()!!)
-            wokCommande.add(selectedSauce)
+
+
        //     if (selecte)
           //  wokCommande.add(selectedCouv)
 
@@ -352,9 +342,9 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
                 if (com.wok == true) {
                     wok.id+= com.id+","
                     if (com.qunatity == 1)
-                        wok.title += "\n ${com.title}"
+                        wok.title += "${com.title}\n"
                     else
-                        wok.title += "\n ${com.qunatity}x ${com.title}"
+                        wok.title += "${com.qunatity}x ${com.title}\n"
                     var priceWithoutComma = wok.price.replace(",",".")
                     var compriceWithoutComma = com.price.replace(",",".")
                     wok.price = (priceWithoutComma.toDouble() + (compriceWithoutComma.toDouble() * com.qunatity) ).toString()
@@ -362,6 +352,7 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
                 else
                     commandes.add(com)
             }
+            wok.title = wok.title.substring(0,wok.title.length-2)
             var priceWithoutComma = wok.price.replace(",",".")
             var pr =  String.format("%.2f", priceWithoutComma.toDouble())
             wok.price = pr
@@ -399,5 +390,22 @@ class DetailsWokActivityStep1 : AppCompatActivity() {
     private fun sendOnStartEvent()
     {
         viewModel.setStateEvent(DetailsWokActivityStep1ViewModel.StateEvent.OnStart)
+    }
+
+
+    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+        Log.i("CHECKED_ID",buttonView?.id.toString())
+        if (isChecked) {
+            var couv = couverts?.get(buttonView!!.id)
+            selectedCouv.add(CommandeModel(couv?.id!!, couv?.name!!, couv?.price!!, couv?.image, 1, true))
+            Log.i("CHECKED_ID"," Added : ${couv.name} ${couv.id} ")
+        }
+        else {
+            var couv = couverts?.get(buttonView!!.id)
+            selectedCouv.removeAll {
+                it.id == couv?.id
+            }
+            Log.i("CHECKED_ID"," Removed  : ${couv?.name} ${couv?.id} ")
+        }
     }
 }

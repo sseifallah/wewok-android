@@ -30,7 +30,7 @@ data class WoksRawModel(
     @SerializedName("Boissons")
     val boissons:List<MenuItemRawModel>,
 
-    @SerializedName("Couverts")
+    @SerializedName("Couverts et Fourchettes")
     val couverts:List<MenuItemRawModel>,
 
 )
